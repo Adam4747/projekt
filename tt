@@ -1,0 +1,30 @@
+import { Component, HostListener } from '@angular/core';
+
+@Component({
+  selector: 'app-star-wars',
+  templateUrl: './star-wars.component.html',
+  styleUrls: ['./star-wars.component.css']
+})
+export class StarWarsComponent {
+  scrollPosition = 0;
+
+  characters = [
+    { name: 'Darth Vader', img: 'assets/vader.jpg', visible: false },
+    { name: 'Luke Skywalker', img: 'assets/luke.jpg', visible: false },
+    { name: 'Yoda', img: 'assets/yoda.jpg', visible: false },
+    { name: 'Obi-Wan Kenobi', img: 'assets/obiwan.jpg', visible: false },
+    { name: 'R2-D2', img: 'assets/r2d2.jpg', visible: false },
+    { name: 'C-3PO', img: 'assets/c3po.jpg', visible: false }
+  ];
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.scrollPosition = window.scrollY;
+
+    this.characters.forEach((char, index) => {
+      if (this.scrollPosition > index * 300) {
+        char.visible = true;
+      }
+    });
+  }
+}
