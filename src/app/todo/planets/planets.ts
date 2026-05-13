@@ -10,27 +10,27 @@ export class PlanetsComponent {
   planetId: string | null = null;
 
   planets: any = {
-    'Alderaan': {
+    'alderaan': {
       name: 'Alderaan',
       description: 'Planeta zniszczona przez Gwiazdę Śmierci'
     },
-    'Coruscant': {
+    'coruscant': {
       name: 'Coruscant',
       description: 'Stolica galaktyki, planeta-miasto'
     },
-    'Dagobah': {
+    'dagobah': {
       name: 'Dagobah',
       description: 'Bagienna planeta, miejsce ukrycia Yody'
     },
-    'Hath': {
-      name: 'Hath',     
+    'hoth': {
+      name: 'Hoth',     
       description: 'Planeta zimna, miejsce operacji Clone'
     },
-    'Naboo': {
+    'naboo': {
       name: 'Naboo',
       description: 'Planeta o bujnej przyrodzie, miejsce pochodzenia Padmé Amidali'
     },
-    'Tatooine': {
+    'tatooine': {
       name: 'Tatooine',
       description: 'Pustynna planeta, miejsce urodzenia Lukea Skywalkera'
     } 

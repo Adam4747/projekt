@@ -10,27 +10,27 @@ export class SpeciesComponent {
   speciesId: string | null = null;
 
   specie: any = {
-    'Aqualish': {
+    'aqualish': {
       name: 'Aqualish',
       description: 'Aqualish to gatunek wodny, który zamieszkuje planety z dużą ilością wody. Są znani z ich zdolności do oddychania pod wodą i poruszania się w środowisku wodnym.'
     },
-    'Czlowiek': {
+    'czlowiek': {
       name: 'Czlowiek',
       description: 'Ludzie to gatunek inteligentny i adaptacyjny, który rozwija się w różnych środowiskach galaktyki.'
     },
-    'Ewoki': {
+    'ewoki': {
       name: 'Ewoki',
       description: 'Ewoki to małe, futrzaste stworzenia zamieszkujące lasy Endoru. Są znane z ich sprytu i umiejętności przetrwania.'
     },
-    'Gungan': {
+    'gungan': {
       name: 'Gungan',
       description: 'Gungan to gatunek wodny zamieszkujący planetę Naboo. Są znani z ich zdolności do oddychania pod wodą i poruszania się w środowisku wodnym.'
     },
-    'Hutt': {
+    'hutt': {
       name: 'Hutt',
       description: 'Hutty to duże, oślizgłe stworzenia, które często zajmują się przestępczością i handlem w galaktyce.'
     },
-    'Wookie': {
+    'wookie': {
       name: 'Wookie',
       description: 'Wookiee to duże, futrzaste stworzenia zamieszkujące planetę Kashyyyk. Są znani z их siły i lojalności.'
     }
