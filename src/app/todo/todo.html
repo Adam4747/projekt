@@ -1,12 +1,14 @@
-<h1 class="title">STAR WARS</h1>
+<div class="todo-shell">
+  <div class="starfield"></div>
 
-<div class="options-container">
+  <h1 class="title">STAR WARS</h1>
 
- 
-  <div class="option">
-  <button class="option-btn" (click)="toggleDropdown('characters')">
-    Postacie
-  </button>
+  <div class="options-container">
+
+    <div class="option">
+      <button class="option-btn" (click)="toggleDropdown('characters')">
+        Postacie
+      </button>
 
   <div class="dropdown" *ngIf="openDropdown === 'characters'">
     <div *ngFor="let character of characters">
