@@ -1,2 +1,42 @@
-<h1>{{ vehicles.name }}</h1>
-<p>{{ vehicles.description }}</p>
+<div class="vehicle-container">
+  <button class="back-button" type="button" (click)="goBack()">← Powrót</button>
+  <div class="vehicle-card">
+    <div class="vehicle-image">
+      <img [src]="vehicles.image" alt="{{ vehicles.name }}" />
+    </div>
+    <div class="vehicle-details">
+      <h1 class="vehicle-name">{{ vehicles.name }}</h1>
+      <h2 class="vehicle-model">{{ vehicles.model }}</h2>
+      <p class="vehicle-description">{{ vehicles.description }}</p>
+      <div class="vehicle-specs">
+        <div class="spec-item">
+          <strong>Manufacturer:</strong> {{ vehicles.manufacturer }}
+        </div>
+        <div class="spec-item">
+          <strong>Class:</strong> {{ vehicles.vehicle_class }}
+        </div>
+        <div class="spec-item">
+          <strong>Cost:</strong> {{ vehicles.cost_in_credits }} credits
+        </div>
+        <div class="spec-item">
+          <strong>Length:</strong> {{ vehicles.length }} meters
+        </div>
+        <div class="spec-item">
+          <strong>Max Speed:</strong> {{ vehicles.max_atmosphering_speed }} km/h
+        </div>
+        <div class="spec-item">
+          <strong>Crew:</strong> {{ vehicles.crew }}
+        </div>
+        <div class="spec-item">
+          <strong>Passengers:</strong> {{ vehicles.passengers }}
+        </div>
+        <div class="spec-item">
+          <strong>Cargo Capacity:</strong> {{ vehicles.cargo_capacity }} kg
+        </div>
+        <div class="spec-item">
+          <strong>Consumables:</strong> {{ vehicles.consumables }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
