@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-planets',
+  styleUrls: ['./planets.css'],
   templateUrl: './planets.html',
 })
 export class PlanetsComponent {
