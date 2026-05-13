@@ -74,10 +74,10 @@ html, body {
   margin: 0;
   padding: 60px 20px 30px;
   font-size: clamp(3rem, 7vw, 5.5rem);
-  letter-spacing: 0.4rem;
-  color: #ffffff;
+  letter-spacing: 0.4rem;;
   text-transform: uppercase;
-  text-shadow: 0 0 35px rgba(255,255,255,0.22);
+  text-shadow: 0 0 10px gold;
+  -webkit-text-stroke: 0.5px gold;
 }
 
 .options-container {
