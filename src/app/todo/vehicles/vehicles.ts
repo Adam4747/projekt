@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ export class VehiclesComponent {
   vehiclesId: string | null = null;
 
   vehicle: any = {
-    'AT-AT': {
+    'at-at': {
       name: 'AT-AT',
       model: 'All Terrain Armored Transport',
       manufacturer: 'Kuat Drive Yards',
@@ -27,7 +27,7 @@ export class VehiclesComponent {
       description: 'AT-AT to ogromny, czteronożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w potężne działa laserowe i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
       image: 'assets/img/vehicles/at-at.png'
     },
-    'AT-ST': {
+    'at-st': {
       name: 'AT-ST',
       model: 'All Terrain Scout Transport',
       manufacturer: 'Kuat Drive Yards',
@@ -42,7 +42,7 @@ export class VehiclesComponent {
       description: 'AT-ST to mniejszy, dwunożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do patrolowania i wsparcia piechoty na polu bitwy.',
       image: 'https://starwars-visualguide.com/assets/img/vehicles/7.jpg'
     },
-    'Juggernaut': {
+    'juggernaut': {
       name: 'Juggernaut',
       model: 'Juggernaut',
       manufacturer: 'Huppla Pasa Tisc Shipwrights Collective',
@@ -57,7 +57,7 @@ export class VehiclesComponent {
       description: 'Juggernaut to potężny pojazd kroczący używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w ciężkie działa i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
       image: 'https://starwars-visualguide.com/assets/img/vehicles/17.jpg'
     },
-    'MTT': {
+    'mtt': {
       name: 'MTT',
       model: 'Multi-Troop Transport',
       manufacturer: 'Baktoid Armor Workshop',
@@ -72,7 +72,7 @@ export class VehiclesComponent {
       description: 'MTT to duży pojazd transportowy używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do transportu dużej liczby żołnierzy na pole bitwy.',
       image: 'https://starwars-visualguide.com/assets/img/vehicles/18.jpg'
     },
-    'Sandcrawler': {
+    'sandcrawler': {
       name: 'Sandcrawler',
       model: 'Sandcrawler',
       manufacturer: 'Z-Gon Corporation',
@@ -87,7 +87,7 @@ export class VehiclesComponent {
       description: 'Sandcrawler to ogromny pojazd kroczący używany przez Jawów na pustynnej planecie Tatooine. Jest wykorzystywany głównie do transportu i handlu różnymi towarami, a także do zbierania złomu i części z wraków statków kosmicznych.',
       image: 'https://starwars-visualguide.com/assets/img/vehicles/4.jpg'
     },
-    '74-Z Speeder Bike': {
+    'speeder-bike': {
       name: '74-Z Speeder Bike',
       model: '74-Z Speeder Bike',
       manufacturer: 'Aratech Repulsor Company',
@@ -104,15 +104,15 @@ export class VehiclesComponent {
      }
   };
 
-  constructor(private route: ActivatedRoute, private location: Location) {
-    this.vehiclesId = this.route.snapshot.paramMap.get('id');
+  constructor(private route: ActivatedRoute, private location: Location, private router: Router) {
+    this.vehiclesId = this.route.snapshot.paramMap.get('id')?.toLowerCase() ?? null;
   }
 
   goBack() {
     if (window.history.length > 1) {
       this.location.back();
     } else {
-      window.location.href = '/';
+      this.router.navigate(['/']);
     }
   }
 
