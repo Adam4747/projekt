@@ -2,7 +2,7 @@
   <button class="back-button" type="button" (click)="goBack()">← Powrót</button>
   <div class="vehicle-card">
     <div class="vehicle-image">
-      <img [src]="vehicles.image" alt="{{ vehicles.name }}" />
+      <img [src]="vehicles.image" alt="{{ vehicles.name }}" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'" />
     </div>
     <div class="vehicle-details">
       <h1 class="vehicle-name">{{ vehicles.name }}</h1>
