@@ -10,7 +10,7 @@ export class CharacterComponent {
   id: string | null = null;
 
   characters: any = {
-    'dark-vader': {
+    'darth-vader': {
       name: 'Darth Vader',
       description: 'Sith Lord, ojciec Lukea Skywalkera'
       

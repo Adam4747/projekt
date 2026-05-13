@@ -1,78 +1,79 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <title>Strona</title>
-  <link rel="stylesheet" href="todo.css">
-</head>
-<body>
+<h1 class="title">STAR WARS</h1>
 
-  <b><h1 class="title">STAR WARS</h1></b>
+<div class="options-container">
 
-  <div class="options-container">
+ 
+  <div class="option">
+  <button class="option-btn" (click)="toggleDropdown('characters')">
+    Postacie
+  </button>
 
-    <div class="option">
-      <button class="option-btn">Postacie</button>
-      <div class="dropdown">
-         <button (click)="goToCharacter('dark-vader')">Dark Vader</button>
-  <button (click)="goToCharacter('c-3-po')">C-3PO</button>
-  <button (click)="goToCharacter('han-solo')">Han Solo</button>
-  <button (click)="goToCharacter('leia-organa')">Leia Organa</button>
-  <button (click)="goToCharacter('luke-skywalker')">Luke Skywalker</button>
-  <button (click)="goToCharacter('yoda')">Yoda</button>
+  <div class="dropdown" *ngIf="openDropdown === 'characters'">
+    <div *ngFor="let character of characters">
+      <button (click)="goToCharacter(character.id)">
+        {{ character.name }}
+      </button>
     </div>
-    </div>
-
-    <div class="option">
-      <button class="option-btn">Planety</button>
-      <div class="dropdown">
-        <button (click)="goToPlanet('Alderaan')">Alderaan</button>
-        <button (click)="goToPlanet('Coruscant')">Coruscant</button>
-        <button (click)="goToPlanet('Dagobah')">Dagobah</button>
-        <button (click)="goToPlanet('Hath')">Hath</button>
-        <button (click)="goToPlanet('Naboo')">Naboo</button>
-        <button (click)="goToPlanet('Tatooine')">Tatooine</button>
-      </div>
-    </div>
-
-    <div class="option">
-      <button class="option-btn">Pojazdy</button>
-      <div class="dropdown">
-        <button (click)="goToVehicles('AT-AT')">AT-AT</button>
-        <button (click)="goToVehicles('AT-ST')">AT-ST</button>
-        <button (click)="goToVehicles('Juggernaut')">Juggernaut</button>
-        <button (click)="goToVehicles('MTT')">MTT</button>
-        <button (click)="goToVehicles('Sandcrawler')">Sandcrawler</button>
-        <button (click)="goToVehicles('74-Z Speeder Bike')">74-Z Speeder Bike</button>
-      </div>
-    </div>
-
-    <div class="option">
-      <button class="option-btn">Gatunki</button>
-      <div class="dropdown">
-        <button (click)="goToSpecies('Aqualish')">Aqualish</button>
-        <button (click)="goToSpecies('Człowiek')">Człowiek</button>
-        <button (click)="goToSpecies('Ewoki')">Ewoki</button>
-        <button (click)="goToSpecies('Gungan')">Gungan</button>
-        <button (click)="goToSpecies('Hutt')">Hutt</button>
-        <button (click)="goToSpecies('Wookie')">Wookie</button>
-      </div>
-    </div>
-
-    <div class="option">
-      <button class="option-btn">Statki kosmiczne</button>
-      <div class="dropdown">
-        <button (click)="goToSpaceships('ARC-170')">ARC-170</button>
-        <button (click)="goToSpaceships('Devastator')">Devastator</button>
-        <button (click)="goToSpaceships('Gwiazda śmierci')">Gwiazda śmierci</button>
-        <button (click)="goToSpaceships('Sokol Millennium')">Sokol Millennium</button>
-        <button (click)="goToSpaceships('TIE Whisper')">TIE Whisper</button>
-        <button (click)="goToSpaceships('X-wing')">X-wing</button>
-
-
-      </div>
-    </div>
-
+  </div>
 </div>
-</body>
-</html>
+ 
+
+  <div class="option">
+  <button class="option-btn" (click)="toggleDropdown('planets')">
+    Planety
+  </button>
+
+  <div class="dropdown" *ngIf="openDropdown === 'planets'">
+    <div *ngFor="let planet of planets">
+      <button (click)="goToPlanet(planet.id)">
+        {{ planet.name }}
+      </button>
+    </div>
+  </div>
+</div>
+
+  
+  <div class="option">
+  <button class="option-btn" (click)="toggleDropdown('vehicles')">
+    Pojazdy
+  </button>
+
+  <div class="dropdown" *ngIf="openDropdown === 'vehicles'">
+    <div *ngFor="let vehicle of vehicles">
+      <button (click)="goToVehicles(vehicle.id)">
+        {{ vehicle.name }}
+      </button>
+    </div>
+  </div>
+</div>
+
+  
+ <div class="option">
+  <button class="option-btn" (click)="toggleDropdown('species')">
+    Gatunki
+  </button>
+
+  <div class="dropdown" *ngIf="openDropdown === 'species'">
+    <div *ngFor="let s of species">
+      <button (click)="goToSpecies(s.id)">
+        {{ s.name }}
+      </button>
+    </div>
+  </div>
+</div>
+
+ 
+  <div class="option">
+  <button class="option-btn" (click)="toggleDropdown('starships')">
+    Statki kosmiczne
+  </button>
+
+  <div class="dropdown" *ngIf="openDropdown === 'starships'">
+    <div *ngFor="let ship of starships">
+      <button (click)="goToSpaceships(ship.id)">
+        {{ ship.name }}
+      </button>
+    </div>
+  </div>
+</div>
+
