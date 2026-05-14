@@ -27,7 +27,7 @@ export class SpeciesComponent {
       homeworld: 'Ando',
       language: 'Aqualish',
       description: 'Aqualish to gatunek wodny z długimi mackami i charakterystycznym wyrazem twarzy. Często spotykany na mokrych, tropikalnych planetach.',
-      image: 'https://starwars-visualguide.com/assets/img/species/1.jpg'
+      image: '/assets/img/species/aqualish.png'
     },
     'human': {
       name: 'Człowiek',
@@ -41,7 +41,7 @@ export class SpeciesComponent {
       homeworld: 'Coruscant',
       language: 'Galactic Basic',
       description: 'Ludzie to gatunek inteligentny i niezwykle adaptacyjny, obecny na wielu światach galaktyki.',
-      image: '/assets/img/vehicles/speeder.png'
+      image: '/assets/img/species/human.png'
     },
     'ewok': {
       name: 'Ewoki',
@@ -55,7 +55,7 @@ export class SpeciesComponent {
       homeworld: 'Endor',
       language: 'Ewokese',
       description: 'Ewoki to małe, futrzaste stworzenia z Endoru. Są zwinne i żyją w silnych społecznościach leśnych.',
-      image: 'https://starwars-visualguide.com/assets/img/species/3.jpg'
+      image: '/assets/img/species/ewoki.png'
     },
     'gungan': {
       name: 'Gungan',
@@ -69,7 +69,7 @@ export class SpeciesComponent {
       homeworld: 'Naboo',
       language: 'Gungan Basic',
       description: 'Gungan to wodny gatunek, który doskonale porusza się zarówno w powietrzu, jak i pod powierzchnią wody.',
-      image: 'https://starwars-visualguide.com/assets/img/species/4.jpg'
+      image: '/assets/img/species/gungan.png'
     },
     'hutt': {
       name: 'Hutt',
@@ -83,24 +83,10 @@ export class SpeciesComponent {
       homeworld: 'Nal Hutta',
       language: 'Huttese',
       description: 'Hutty to władczy i długowieczny gatunek, znany z roli przywódców i bossów podziemia.',
-      image: 'https://starwars-visualguide.com/assets/img/species/5.jpg'
-    },
-    'wookie': {
-      name: 'Wookie',
-      classification: 'Mammal',
-      designation: 'Sentient',
-      average_height: '210',
-      skin_colors: 'Gray',
-      hair_colors: 'Black, Brown',
-      eye_colors: 'Blue, Green, Yellow, Brown, Golden, Red',
-      average_lifespan: '400',
-      homeworld: 'Kashyyyk',
-      language: 'Shyriiwook',
-      description: 'Wookiee to silny, futrzasty gatunek znany z odwagi i oddania swoim przyjaciołom.',
-      image: 'https://starwars-visualguide.com/assets/img/species/6.jpg'
+      image: '/assets/img/species/hutt.png'
     },
     'wookiee': {
-      name: 'Wookie',
+      name: 'Wookiee',
       classification: 'Mammal',
       designation: 'Sentient',
       average_height: '210',
@@ -111,8 +97,8 @@ export class SpeciesComponent {
       homeworld: 'Kashyyyk',
       language: 'Shyriiwook',
       description: 'Wookiee to silny, futrzasty gatunek znany z odwagi i oddania swoim przyjaciołom.',
-      image: 'https://starwars-visualguide.com/assets/img/species/6.jpg'
-    }
+      image: '/assets/img/species/wookie.png'
+    },
   };
 
   constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
