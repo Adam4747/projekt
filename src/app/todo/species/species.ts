@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-species',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './species.html',
   styleUrls: ['./species.css']
 })
@@ -38,15 +41,15 @@ export class SpeciesComponent {
       homeworld: 'Coruscant',
       language: 'Galactic Basic',
       description: 'Ludzie to gatunek inteligentny i niezwykle adaptacyjny, obecny na wielu światach galaktyki.',
-      image: 'https://starwars-visualguide.com/assets/img/species/2.jpg'
+      image: '/assets/img/vehicles/speeder.png'
     },
-    'ewoki': {
+    'ewok': {
       name: 'Ewoki',
       classification: 'Mammal',
       designation: 'Sentient',
       average_height: '100',
       skin_colors: 'Brown',
-      hair_colors: 'Brown, Black',
+      hair_colors: 'Brown, Black', 
       eye_colors: 'Orange, Brown',
       average_lifespan: 'Unknown',
       homeworld: 'Endor',
@@ -83,6 +86,20 @@ export class SpeciesComponent {
       image: 'https://starwars-visualguide.com/assets/img/species/5.jpg'
     },
     'wookie': {
+      name: 'Wookie',
+      classification: 'Mammal',
+      designation: 'Sentient',
+      average_height: '210',
+      skin_colors: 'Gray',
+      hair_colors: 'Black, Brown',
+      eye_colors: 'Blue, Green, Yellow, Brown, Golden, Red',
+      average_lifespan: '400',
+      homeworld: 'Kashyyyk',
+      language: 'Shyriiwook',
+      description: 'Wookiee to silny, futrzasty gatunek znany z odwagi i oddania swoim przyjaciołom.',
+      image: 'https://starwars-visualguide.com/assets/img/species/6.jpg'
+    },
+    'wookiee': {
       name: 'Wookie',
       classification: 'Mammal',
       designation: 'Sentient',

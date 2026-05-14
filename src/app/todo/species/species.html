@@ -1,4 +1,8 @@
 <div class="species-shell">
+  <div class="species-header">
+    <button class="back-button" (click)="goBack()">Powrót</button>
+  </div>
+
   <section *ngIf="species; else noSpecies" class="species-panel">
     <div class="species-hero">
       <img [src]="species.image" alt="{{ species.name }}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
@@ -50,6 +54,4 @@
       <p>Nie mogliśmy odnaleźć informacji o tej rasie. Spróbuj innego wyboru.</p>
     </div>
   </ng-template>
-
-  <button class="back-button" (click)="goBack()">Powrót</button>
 </div>
