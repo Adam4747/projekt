@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-spaceships',
@@ -84,10 +85,19 @@ export class SpaceshipsComponent {
       image: '/assets/img/spaceships/x-wing.png',
     }
   };
-
-  constructor(private route: ActivatedRoute) {
+  
+  constructor(private route: ActivatedRoute, private location: Location) {
     this.spaceshipsId = this.route.snapshot.paramMap.get('id');
   }
+
+  goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      window.location.href = '/';
+    }
+  }
+
   get Spaceship() {
     return this.spaceships[this.spaceshipsId || ''];
   }
