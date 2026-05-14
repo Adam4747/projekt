@@ -1,4 +1,50 @@
-    <h1>{{ Spaceship.name }}</h1>
-<p>{{ Spaceship.description }}</p>
+<div class="spaceship-container">
+  <article class="spaceship-card">
+    <div class="spaceship-image">
+     
+        <img [src]="Spaceship.image" [alt]="Spaceship.name" />
+     
+      <ng-template #placeholder>
+        <div class="image-placeholder">
+          Zdjęcie statku kosmicznego<br />
+          brak w zasobach
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="spaceship-details">
+      <h1 class="spaceship-name">{{ Spaceship.name }}</h1>
+      <div class="spaceship-model">{{ Spaceship.model }}</div>
+      <p class="spaceship-description">{{ Spaceship.description }}</p>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <strong>Prędkość maksymalna</strong>
+          <span>{{ Spaceship.max_atmosphering_speed }} MGLT</span>
+        </div>
+        <div class="spec-card">
+          <strong>Załoga</strong>
+          <span>{{ Spaceship.crew }}</span>
+        </div>
+        <div class="spec-card">
+          <strong>Pasażerowie</strong>
+          <span>{{ Spaceship.passengers }}</span>
+        </div>
+        <div class="spec-card">
+          <strong>Długość</strong>
+          <span>{{ Spaceship.length }} m</span>
+        </div>
+        <div class="spec-card">
+          <strong>Producent</strong>
+          <span>{{ Spaceship.manufacturer }}</span>
+        </div>
+        <div class="spec-card">
+          <strong>Klasa statku</strong>
+          <span>{{ Spaceship.starship_class }}</span>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
 
 

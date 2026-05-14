@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-spaceships',
   templateUrl: './spaceships.html',
+  styleUrls: ['./spaceships.css']
 })
 export class SpaceshipsComponent {
 
@@ -12,33 +13,69 @@ export class SpaceshipsComponent {
   spaceships: any = {
     'arc-170': {
       name: 'ARC-170',
-      model: 'Aggressive ReConnaissance-170 starfighte',
-      description: 'ARC-170 to myśliwiec szturmowy używany przez Republikę Galaktyczną podczas wojen klonów. Jest to trzymiejscowy statek, który może pełnić funkcję myśliwca, bombowca i transportu. ARC-170 jest wyposażony w potężne uzbrojenie, w tym działka laserowe i torpedy protonowe, co czyni go skutecznym narzędziem w walce przeciwko Separatystom.'
+      model: 'Aggressive Reconnaissance-170 Starfighter',
+      manufacturer: 'Kuat Systems Engineering',
+      starship_class: 'Starfighter',
+      max_atmosphering_speed: '100',
+      crew: '3',
+      passengers: '2',
+      length: '14.5',
+      description: 'ARC-170 to trzymiejscowy myśliwiec szturmowy używany przez Republikę Galaktyczną podczas wojen klonów. Łączy w sobie rolę myśliwca, bombowca i małego transportu, dzięki czemu jest wszechstronny na polu bitwy.',
     },
     'devastator': {
       name: 'Devastator',
       model: 'Imperial I-class Star Destroyer',
-      description: 'Devastator to niszczyciel gwiezdny klasy Imperial I, który służył Imperium Galaktycznemu. Jest to ogromny statek o długości ponad 1,6 kilometra, wyposażony w potężne uzbrojenie, w tym działka laserowe i torpedy protonowe. Devastator był jednym z pierwszych niszczycieli gwiezdnych używanych przez Imperium i odegrał kluczową rolę w bitwie o Yavin, gdzie został zniszczony przez Rebelów.'
+      manufacturer: 'Kuat Drive Yards',
+      starship_class: 'Star Destroyer',
+      max_atmosphering_speed: '60',
+      crew: '47060',
+      passengers: '0',
+      length: '1600',
+      description: 'Devastator to potężny niszczyciel gwiezdny Imperium, o masywnych możliwościach bojowych i wielkiej obecności nad systemami planetarnymi.',
     },
-    'gwiezda śmierci': {
+    'death-star': {
       name: 'Gwiazda śmierci',
       model: 'Death Star',
-      description: 'Gwiazda śmierci to ogromna stacja kosmiczna i superbroń stworzona przez Imperium Galaktyczne. Jest to jedna z największych i najbardziej przerażających konstrukcji w galaktyce, zdolna do zniszczenia całej planety jednym strzałem z potężnej superlasera. Gwiazda śmierci była używana przez Imperium do zastraszania i kontrolowania galaktyki, ale ostatecznie została zniszczona przez Rebelów podczas bitwy o Yavin.'
+      manufacturer: 'Imperial Military Research',
+      starship_class: 'Battle station',
+      max_atmosphering_speed: '10 ',
+      crew: '342953',
+      passengers: '843342',
+      length: '120000',
+      description: 'Gwiazda śmierci to stacja bojowa zdolna do zniszczenia całej planety jednym strzałem. To najbardziej przerażająca superbroń Imperium.',
     },
-    'sokol millennium': {
-      name: 'Sokol Millennium',
+    'millennium-falcon': {
+      name: 'Sokół Millennium',
       model: 'YT-1300 light freighter',
-      description: 'Sokol Millennium to słynny frachtowiec klasy YT-1300, który stał się jednym z najbardziej rozpoznawalnych statków w galaktyce. Jest to statek o dużej prędkości i zwrotności, wyposażony w potężne uzbrojenie i zaawansowane systemy obronne. Sokol Millennium był używany przez Hana Solo i Chewbaccę do przemytu i walki przeciwko Imperium, a także odegrał kluczową rolę w bitwie o Yavin i bitwie o Endor.'
+      manufacturer: 'Corellian Engineering Corporation',
+      starship_class: 'Light freighter',
+      max_atmosphering_speed: '75',
+      crew: '2',
+      passengers: '6',
+      length: '34.75',
+      description: 'Sokół Millennium to szybki i zwrotny frachtowiec z najlepszym w galaktyce hypernapędem. Idealny do przemytniczych misji i ucieczek przed Imperium.',
     },
-    'tie whisper': {
+    'tie-whisper': {
       name: 'TIE Whisper',
       model: 'TIE/IN interceptor',
-      description: 'TIE Whisper to myśliwiec przechwytujący używany przez Imperium Galaktyczne. Jest to ulepszona wersja standardowego myśliwca TIE, wyposażona w potężniejsze silniki i uzbrojenie. TIE Whisper jest znany z dużej prędkości i zwrotności, co czyni go skutecznym narzędziem do przechwytywania i niszczenia celów powietrznych.'
+      manufacturer: 'Sienar Fleet Systems',
+      starship_class: 'Interceptor',
+      max_atmosphering_speed: '125',
+      crew: '1',
+      passengers: '0',
+      length: '9.7',
+      description: 'TIE Whisper to szybki przechwytujący myśliwiec Imperium o wysokiej zwrotności i agresywnym profilu bojowym.',
     },
     'x-wing': {
       name: 'X-wing',
       model: 'T-65 X-wing starfighter',
-      description: 'X-wing to myśliwiec gwiezdny używany przez Rebelów i Nową Republikę. Jest to statek o dużej prędkości i zwrotności, wyposażony w potężne uzbrojenie, w tym działka laserowe i torpedy protonowe. X-wing jest znany z charakterystycznego układu skrzydeł, które mogą być rozkładane w trybie ataku, co zwiększa jego skuteczność w walce.'
+      manufacturer: 'Incom Corporation',
+      starship_class: 'Starfighter',
+      max_atmosphering_speed: '100',
+      crew: '1',
+      passengers: '0',
+      length: '12.5',
+      description: 'X-wing to legendarny myśliwiec Rebelii, łączący szybkość, zwrotność i siłę ognia. Sprawdza się zarówno w dogfightach, jak i w atakach na większe cele.',
     }
   };
 

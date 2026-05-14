@@ -1,22 +1,156 @@
 body {
-  background: #ffffff;
-  color: #111111;
-  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 26%),
+    #eef4fb;
+  color: #111827;
+  font-family: Inter, Arial, sans-serif;
   margin: 0;
   padding: 40px 20px;
   min-height: 100vh;
 }
 
-h1 {
-  color: #111111;
-  text-align: center;
-  margin-bottom: 24px;
+.spaceship-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
 }
 
-p {
-  max-width: 850px;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #333333;
+.spaceship-card {
+  width: min(100%, 980px);
+  display: flex;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.14);
+  overflow: hidden;
+}
+
+.spaceship-image {
+  flex: 0 0 40%;
+  min-height: 460px;
+  background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  position: relative;
+}
+
+.spaceship-image::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+.spaceship-image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 18px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.image-placeholder {
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+  position: relative;
+  z-index: 1;
+}
+
+.spaceship-details {
+  flex: 1;
+  padding: 44px 40px;
+}
+
+.spaceship-name {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.05em;
+  color: #0f172a;
+}
+
+.spaceship-model {
+  margin: 14px 0 28px;
+  color: #475569;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.spaceship-description {
+  margin: 0 0 32px;
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.spec-card {
+  background: #f8fbff;
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 18px;
+  padding: 20px 22px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spec-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+}
+
+.spec-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.spec-card span {
+  color: #334155;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 900px) {
+  .spaceship-card {
+    flex-direction: column;
+  }
+
+  .spaceship-image {
+    min-height: 320px;
+    padding: 28px;
+  }
+
+  .spaceship-card {
+    width: min(100%, 720px);
+  }
+}
+
+@media (max-width: 640px) {
+  .spaceship-details {
+    padding: 28px 22px;
+  }
+
+  .spaceship-name {
+    font-size: 2.3rem;
+  }
+
+  .spaceship-model {
+    font-size: 1rem;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
 }
