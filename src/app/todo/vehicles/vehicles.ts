@@ -14,7 +14,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class VehiclesComponent {
 
   vehicle: any;
-  loading = true; // 👈 DODANE
+  loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
 
@@ -63,7 +63,7 @@ export class VehiclesComponent {
         this.vehicle = data;
         console.log("test", data);
         console.log(this.loading, "3a");
-        this.loading = false; // 👈 DODANE (TU KOŃCZY SIĘ ŁADOWANIE)
+        this.loading = false;
         this.cdr.detectChanges();
         console.log(this.loading, "3b");
       });

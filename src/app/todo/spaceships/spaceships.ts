@@ -14,7 +14,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class SpaceshipsComponent {
 
   spaceships: any;
-  loading = true; // 👈 DODANE
+  loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
 
@@ -60,7 +60,7 @@ export class SpaceshipsComponent {
         this.spaceships = data;
         console.log("test", data);
         console.log(this.loading, "3a");
-        this.loading = false; // 👈 DODANE (TU KOŃCZY SIĘ ŁADOWANIE)
+        this.loading = false;
         this.cdr.detectChanges();
         console.log(this.loading, "3b");
       });
