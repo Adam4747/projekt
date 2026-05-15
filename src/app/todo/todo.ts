@@ -45,7 +45,7 @@ export class Todo {constructor(private router: Router) {}
     { id: 'ewok', name: 'Ewoki' },
     { id: 'gungan', name: 'Gungan' },
     { id: 'hutt', name: 'Hutt' },
-    { id: 'wookiee', name: 'Wookie' }
+    { id: 'wookiee', name: 'Wookiee' }
   ];
 
   starships = [

@@ -1,12 +1,27 @@
+<div *ngIf="loading">
+  Ładowanie postaci...
+</div>
+<div *ngIf="!loading && character" class="character-container">
 
-    <div class="character-container">
-        <div class="character-card">
-            <div class="character-image">
-                <img src="{{ character.image }}" alt="{{ character.name }}" />
-            </div>
-            <div class="character-details">
-                <h1 class="character-name">{{ character.name }}</h1>
-                <p class="character-description">{{ character.description }}</p>
-            </div>
-        </div>
+  <div class="character-card">
+
+    <div class="character-image">
+      <img [src]="images[routeId || ''] || ''" />
     </div>
+
+    <div class="character-details">
+      <h1 class="character-name">{{ character.name }}</h1>
+
+      <p><b>Wzrost:</b> {{ character.height }} cm</p>
+      <p><b>Waga:</b> {{ character.mass }} kg</p>
+      <p><b>Kolor włosów:</b> {{ character.hair_color }}</p>
+      <p><b>Kolor oczu:</b> {{ character.eye_color }}</p>
+      <p><b>Rok urodzenia:</b> {{ character.birth_year }}</p>
+
+      <p class="character-descriptions">
+        {{ descriptions[routeId || ''] }}
+      </p>
+
+    </div>
+  </div>
+</div>

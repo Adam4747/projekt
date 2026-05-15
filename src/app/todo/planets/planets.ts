@@ -13,27 +13,33 @@ export class PlanetsComponent {
   planets: any = {
     'alderaan': {
       name: 'Alderaan',
-      description: 'Planeta zniszczona przez Gwiazdę Śmierci'
+      description: 'Planeta zniszczona przez Gwiazdę Śmierci',
+      image: '/assets/img/planets/alderaan.png',
     },
     'coruscant': {
       name: 'Coruscant',
-      description: 'Stolica galaktyki, planeta-miasto'
+      description: 'Stolica galaktyki, planeta-miasto',
+      image: '/assets/img/planets/coruscant.png',
     },
     'dagobah': {
       name: 'Dagobah',
-      description: 'Bagienna planeta, miejsce ukrycia Yody'
+      description: 'Bagienna planeta, miejsce ukrycia Yody',
+      image: '/assets/img/planets/dagobah.png',
     },
     'hoth': {
       name: 'Hoth',     
-      description: 'Planeta zimna, miejsce operacji Clone'
+      description: 'Planeta zimna, miejsce operacji Clone',
+      image: '/assets/img/planets/hoth.png',
     },
     'naboo': {
       name: 'Naboo',
-      description: 'Planeta o bujnej przyrodzie, miejsce pochodzenia Padmé Amidali'
+      description: 'Planeta o bujnej przyrodzie, miejsce pochodzenia Padmé Amidali',
+      image: '/assets/img/planets/naboo.png',
     },
     'tatooine': {
       name: 'Tatooine',
-      description: 'Pustynna planeta, miejsce urodzenia Lukea Skywalkera'
+      description: 'Pustynna planeta, miejsce urodzenia Lukea Skywalkera',
+      image: '/assets/img/planets/tatooine.png',
     } 
   };
 
