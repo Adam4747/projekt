@@ -1,43 +1,27 @@
-<div class="spaceship-container">
-  <button class="back-button" (click)="goBack()">← Powrót</button>
-  <article class="spaceship-card">
-    <div class="spaceship-image">
-        <img [src]="Spaceship.image" [alt]="Spaceship.name" />
-    </div>
-
-    <div class="spaceship-details">
-      <h1 class="spaceship-name">{{ Spaceship.name }}</h1>
-      <div class="spaceship-model">{{ Spaceship.model }}</div>
-      <p class="spaceship-description">{{ Spaceship.description }}</p>
-
-      <div class="specs-grid">
-        <div class="spec-card">
-          <strong>Prędkość maksymalna</strong>
-          <span>{{ Spaceship.max_atmosphering_speed }} MGLT</span>
-        </div>
-        <div class="spec-card">
-          <strong>Załoga</strong>
-          <span>{{ Spaceship.crew }}</span>
-        </div>
-        <div class="spec-card">
-          <strong>Pasażerowie</strong>
-          <span>{{ Spaceship.passengers }}</span>
-        </div>
-        <div class="spec-card">
-          <strong>Długość</strong>
-          <span>{{ Spaceship.length }} m</span>
-        </div>
-        <div class="spec-card">
-          <strong>Producent</strong>
-          <span>{{ Spaceship.manufacturer }}</span>
-        </div>
-        <div class="spec-card">
-          <strong>Klasa statku</strong>
-          <span>{{ Spaceship.starship_class }}</span>
-        </div>
-      </div>
-    </div>
-  </article>
+<div *ngIf="loading">
+  Ładowanie statków kosmicznych...
 </div>
+<div *ngIf="!loading && spaceships" class="spaceships-container">
 
+  <div class="spaceships-card">
 
+    <div class="spaceships-image">
+      <img [src]="images[routeId || ''] || ''" />
+    </div>
+
+    <div class="spaceships-details">
+      <h1 class="spaceships-name">{{ spaceships.name }}</h1>
+
+      <p><b>Model:</b> {{ spaceships.model }} </p>
+      <p><b>Twórca:</b> {{ spaceships.manufacturer }}</p>
+      <p><b>Cena:</b> {{ spaceships.cost_in_credits }} credits</p>
+      <p><b>Długość:</b> {{ spaceships.length }} m</p>
+      <p><b>Maksymalna prędkość:</b> {{ spaceships.max_atmospheric_speed }} km/h</p> <br>
+
+      <p class="spaceships-descriptions">
+        {{ descriptions[routeId || ''] }}
+      </p>
+
+    </div>
+  </div>
+</div>

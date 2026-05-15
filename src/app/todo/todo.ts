@@ -53,7 +53,7 @@ export class Todo {constructor(private router: Router) {}
     { id: 'devastator', name: 'Devastator' },
     { id: 'death-star', name: 'Gwiazda śmierci' },
     { id: 'millennium-falcon', name: 'Sokół Millennium' },
-    { id: 'tie-whisper', name: 'TIE Whisper' },
+    { id: 'tie-advanced', name: 'TIE Advanced x1' },
     { id: 'x-wing', name: 'X-wing' }
   ];
   openDropdown: string | null = null;
