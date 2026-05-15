@@ -1,0 +1,376 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
+@Component({
+  selector: 'app-vehicles',
+  templateUrl: './vehicles.html',
+  styleUrls: ['./vehicles.css']
+})
+export class VehiclesComponent {
+
+  vehiclesId: string | null = null;
+
+  vehicle: any = {
+    'at-at': {
+      name: 'AT-AT',
+      model: 'All Terrain Armored Transport',
+      manufacturer: 'Kuat Drive Yards',
+      vehicle_class: 'walker',
+      cost_in_credits: 'unknown',
+      length: '20',
+      max_atmosphering_speed: '60',
+      crew: '5',
+      passengers: '40',
+      cargo_capacity: '1000',
+      consumables: 'unknown',
+      description: 'AT-AT to ogromny, czteronożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w potężne działa laserowe i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
+      image: '/assets/img/vehicles/at-at.png'
+    },
+    'at-st': {
+      name: 'AT-ST',
+      model: 'All Terrain Scout Transport',
+      manufacturer: 'Kuat Drive Yards',
+      vehicle_class: 'walker',
+      cost_in_credits: 'unknown',
+      length: '2',
+      max_atmosphering_speed: '90',
+      crew: '2',
+      passengers: '0',
+      cargo_capacity: '200',
+      consumables: 'none',
+      description: 'AT-ST to mniejszy, dwunożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do patrolowania i wsparcia piechoty na polu bitwy.',
+      image: '/assets/img/vehicles/at-st.png'
+    },
+    'juggernaut': {
+      name: 'Juggernaut',
+      model: 'Juggernaut',
+      manufacturer: 'Huppla Pasa Tisc Shipwrights Collective',
+      vehicle_class: 'walker',
+      cost_in_credits: 'unknown',
+      length: '49.4',
+      max_atmosphering_speed: '30',
+      crew: '200',
+      passengers: '0',
+      cargo_capacity: 'unknown',
+      consumables: 'unknown',
+      description: 'Juggernaut to potężny pojazd kroczący używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w ciężkie działa i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
+      image: '/assets/img/vehicles/juggernaut.png'
+    },
+    'mtt': {
+      name: 'MTT',
+      model: 'Multi-Troop Transport',
+      manufacturer: 'Baktoid Armor Workshop',
+      vehicle_class: 'walker',
+      cost_in_credits: 'unknown',
+      length: '31',
+      max_atmosphering_speed: '35',
+      crew: '5',
+      passengers: '112',
+      cargo_capacity: '12000',
+      consumables: 'unknown',
+      description: 'MTT to duży pojazd transportowy używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do transportu dużej liczby żołnierzy na pole bitwy.',
+      image: '/assets/img/vehicles/mtt.png'
+    },
+    'sandcrawler': {
+      name: 'Sandcrawler',
+      model: 'Sandcrawler',
+      manufacturer: 'Z-Gon Corporation',
+      vehicle_class: 'crawler',
+      cost_in_credits: '150000',
+      length: '36.8',
+      max_atmosphering_speed: '30',
+      crew: '46',
+      passengers: '30',
+      cargo_capacity: '50000',
+      consumables: '2 months',
+      description: 'Sandcrawler to ogromny pojazd kroczący używany przez Jawów na pustynnej planecie Tatooine. Jest wykorzystywany głównie do transportu i handlu różnymi towarami, a także do zbierania złomu i części z wraków statków kosmicznych.',
+      image: '/assets/img/vehicles/sandcrawler.png'
+    },
+    'speeder-bike': {
+      name: '74-Z Speeder Bike',
+      model: '74-Z Speeder Bike',
+      manufacturer: 'Aratech Repulsor Company',
+      vehicle_class: 'speeder',
+      cost_in_credits: '8000',
+      length: '3.68',
+      max_atmosphering_speed: '485',
+      crew: '1',
+      passengers: '1',
+      cargo_capacity: '4',
+      consumables: '1 day',
+      description: '74-Z Speeder Bike to szybki, jednoosobowy pojazd używany przez Imperium Galaktyczne. Jest wykorzystywany głównie do patrolowania i szybkiego przemieszczania się po różnych terenach, zwłaszcza w lasach Endoru.',
+      image: '/assets/img/vehicles/speeder.png'
+     },
+    '74-z-speeder-bike': {
+      name: '74-Z Speeder Bike',
+      model: '74-Z Speeder Bike',
+      manufacturer: 'Aratech Repulsor Company',
+      vehicle_class: 'speeder',
+      cost_in_credits: '8000',
+      length: '3.68',
+      max_atmosphering_speed: '485',
+      crew: '1',
+      passengers: '1',
+      cargo_capacity: '4',
+      consumables: '1 day',
+      description: '74-Z Speeder Bike to szybki, jednoosobowy pojazd używany przez Imperium Galaktyczne. Jest wykorzystywany głównie do patrolowania i szybkiego przemieszczania się po różnych terenach, zwłaszcza w lasach Endoru.',
+      image: '/assets/img/vehicles/speeder.png'
+     }
+  };
+
+  constructor(private route: ActivatedRoute, private location: Location, private router: Router) {
+    this.vehiclesId = this.normalizeId(this.route.snapshot.paramMap.get('id'));
+  }
+
+  goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
+
+  normalizeId(id: string | null): string | null {
+    return id
+      ? id
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+      : null;
+  }
+
+  get vehicles() {
+    return this.vehicle[this.vehiclesId || ''];
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="vehicle-container">
+  <button class="back-button" type="button" (click)="goBack()">← Powrót</button>
+  <div class="vehicle-card">
+    <div class="vehicle-image">
+      <img [src]="vehicles.image" alt="{{ vehicles.name }}" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'" />
+    </div>
+    <div class="vehicle-details">
+      <h1 class="vehicle-name">{{ vehicles.name }}</h1>
+      <h2 class="vehicle-model">{{ vehicles.model }}</h2>
+      <p class="vehicle-description">{{ vehicles.description }}</p>
+      <div class="vehicle-specs">
+        <div class="spec-item">
+          <strong>Manufacturer:</strong> {{ vehicles.manufacturer }}
+        </div>
+        <div class="spec-item">
+          <strong>Class:</strong> {{ vehicles.vehicle_class }}
+        </div>
+        <div class="spec-item">
+          <strong>Cost:</strong> {{ vehicles.cost_in_credits }} credits
+        </div>
+        <div class="spec-item">
+          <strong>Length:</strong> {{ vehicles.length }} meters
+        </div>
+        <div class="spec-item">
+          <strong>Max Speed:</strong> {{ vehicles.max_atmosphering_speed }} km/h
+        </div>
+        <div class="spec-item">
+          <strong>Crew:</strong> {{ vehicles.crew }}
+        </div>
+        <div class="spec-item">
+          <strong>Passengers:</strong> {{ vehicles.passengers }}
+        </div>
+        <div class="spec-item">
+          <strong>Cargo Capacity:</strong> {{ vehicles.cargo_capacity }} kg
+        </div>
+        <div class="spec-item">
+          <strong>Consumables:</strong> {{ vehicles.consumables }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #ffffff;
+  color: #111111;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.vehicle-container {
+  max-width: 80%;
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.vehicle-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  margin: 20px 0;
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vehicle-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  position: relative;
+}
+
+.vehicle-image img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 20px;
+  transition: transform 0.3s ease;
+}
+
+.vehicle-image img:hover {
+  transform: scale(1.05);
+}
+
+.vehicle-details {
+  flex: 2;
+  padding: 30px;
+}
+
+.vehicle-name {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #111111;
+}
+
+.vehicle-model {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.vehicle-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333333;
+}
+
+.vehicle-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.spec-item {
+  background: #f7f7f7;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #555555;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.spec-item:hover {
+  background: #ececec;
+  transform: translateX(5px);
+}
+
+.spec-item strong {
+  color: #111111;
+}
+
+@media (max-width: 768px) {
+  .vehicle-card {
+    flex-direction: column;
+  }
+
+  .vehicle-image img {
+    max-height: 250px;
+  }
+
+  .vehicle-details {
+    padding: 20px;
+  }
+
+  .vehicle-name {
+    font-size: 2em;
+  }
+
+  .vehicle-model {
+    font-size: 1.2em;
+  }
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #dddddd;
+  color: #111111;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.back-button:hover {
+  background: #bbbbbb;
+  transform: translateY(-2px);
+}
+
+.back-button:focus {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
+}

@@ -40,11 +40,11 @@ export class Todo {constructor(private router: Router) {}
   ];
 
   species = [
-    { id: 'aqualish', name: 'Aqualish' },
     { id: 'human', name: 'Człowiek' },
     { id: 'ewok', name: 'Ewoki' },
     { id: 'gungan', name: 'Gungan' },
     { id: 'hutt', name: 'Hutt' },
+    { id: 'trandoshan', name: 'Trandoshan' },
     { id: 'wookiee', name: 'Wookiee' }
   ];
 

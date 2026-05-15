@@ -1,57 +1,27 @@
-<div class="species-shell">
-  <div class="species-header">
-    <button class="back-button" (click)="goBack()">Powrót</button>
+<div *ngIf="loading">
+  Ładowanie gatunku...
+</div>
+<div *ngIf="!loading && species" class="species-container">
+
+  <div class="species-card">
+
+    <div class="species-image">
+      <img [src]="images[routeId || ''] || ''" />
+    </div>
+
+    <div class="species-details">
+      <h1 class="species-name">{{ species.name }}</h1>
+
+      <p><b>Klasyfikacja:</b> {{ species.classification }}</p>
+      <p><b>Określenie:</b> {{ species.designation }}</p>
+      <p><b>Średni wzrost:</b> {{ species.average_height }} cm</p>
+      <p><b>Kolor skóry:</b> {{ species.skin_colors }} credits</p>
+      <p><b>Język:</b> {{ species.language }}</p>
+
+      <p class="species-descriptions">
+        {{ descriptions[routeId || ''] }}
+      </p>
+
+    </div>
   </div>
-
-  <section *ngIf="species; else noSpecies" class="species-panel">
-    <div class="species-hero">
-      <img [src]="species.image" alt="{{ species.name }}">
-      <div class="hero-overlay">
-        <div class="hero-tag">{{ species.designation }}</div>
-        <h1>{{ species.name }}</h1>
-        <p class="hero-subtitle">{{ species.classification }} z {{ species.homeworld }}</p>
-      </div>
-    </div>
-
-    <div class="species-info">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span>Średni wzrost</span>
-          <strong>{{ species.average_height }} cm</strong>
-        </div>
-        <div class="stat-card">
-          <span>Kolor skóry</span>
-          <strong>{{ species.skin_colors }}</strong>
-        </div>
-        <div class="stat-card">
-          <span>Kolor włosów</span>
-          <strong>{{ species.hair_colors }}</strong>
-        </div>
-        <div class="stat-card">
-          <span>Kolor oczu</span>
-          <strong>{{ species.eye_colors }}</strong>
-        </div>
-        <div class="stat-card">
-          <span>Język</span>
-          <strong>{{ species.language }}</strong>
-        </div>
-        <div class="stat-card">
-          <span>Długość życia</span>
-          <strong>{{ species.average_lifespan }}</strong>
-        </div>
-      </div>
-
-      <div class="description-card">
-        <h2>Opis</h2>
-        <p>{{ species.description }}</p>
-      </div>
-    </div>
-  </section>
-
-  <ng-template #noSpecies>
-    <div class="species-missing">
-      <h1>Gatunek nieznany</h1>
-      <p>Nie mogliśmy odnaleźć informacji o tej rasie. Spróbuj innego wyboru.</p>
-    </div>
-  </ng-template>
 </div>

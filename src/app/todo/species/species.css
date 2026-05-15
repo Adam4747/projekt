@@ -1,242 +1,154 @@
-﻿:host {
-  display: block;
-  width: 100%;
-  min-height: 100vh;
-  overflow: visible;
-}
-
-/* Styl dla Species - inspirowany wyglądem vehicles, ale z bardziej naturalnym, zielonym motywem */
-.species-shell {
-  min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 24px 20px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 24px;
-  background: #19031cad;
+﻿body {
+  font-family: 'Arial', sans-serif;
+  background: #ffffff;
   color: #111111;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.species-header {
-  width: min(1100px, 100%);
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  position: sticky;
-  top: 16px;
-  z-index: 10;
-  background: transparent;
+  margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
-.description-card,
-.species-missing {
-  background: #ffffff;
-}
-
-.stat-card {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
-.species-panel {
-  width: min(1100px, 100%);
-  max-width: 1100px;
-  margin: 0 auto 24px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: #f8f8f8;
-  color: #111111;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.species-hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 320px;
-  height: 360px;
-}
-
-.species-hero img {
-  position: absolute;
-  inset: 0;
+.species-container {
+  max-width: 80%;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(1.1) contrast(1.05);
-  transform: scale(1.02);
-  transition: transform 0.5s ease;
-}
-
-.species-hero:hover img {
-  transform: scale(1.08);
-}
-
-.hero-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.92) 60%);
-}
-
-.hero-tag {
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.08);
-  color: #333333;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  padding: 8px 14px;
-  border-radius: 999px;
-  margin-bottom: 14px;
-}
-
-.hero-overlay h1 {
-  margin: 0 0 10px;
-  font-size: clamp(2rem, 3.5vw, 3.4rem);
-  line-height: 1.02;
-  color: #111111;
-}
-
-.hero-subtitle {
-  margin: 0;
-  color: #333333;
-  opacity: 0.9;
-  font-size: 1.05rem;
-}
-
-.species-info {
-  padding: 28px 32px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.stat-card {
   padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.species-card {
   background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  margin: 20px 0;
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stat-card:hover {
-  transform: translateY(-3px);
-  background: #f0f0f0;
+.species-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
 }
 
-.stat-card span {
-  display: block;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.species-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  position: relative;
+}
+
+.species-image img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 20px;
+  transition: transform 0.3s ease;
+}
+
+.species-image img:hover {
+  transform: scale(1.05);
+}
+
+.species-details {
+  flex: 2;
+  padding: 30px;
+}
+
+.species-name {
+  font-size: 2.5em;
   margin-bottom: 10px;
-  color: #555555;
-  font-size: 0.95rem;
-}
-
-.stat-card strong {
-  display: block;
-  font-size: 1.2rem;
   color: #111111;
 }
 
-.description-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 22px;
-  padding: 24px;
-  min-height: 100%;
-}
-
-.description-card h2 {
-  margin-top: 0;
-  margin-bottom: 14px;
-  color: #111111;
-}
-
-.description-card p {
-  margin: 0;
-  line-height: 1.75;
+.species-model {
+  font-size: 1.5em;
+  margin-bottom: 20px;
   color: #333333;
+}
+
+.species-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333333;
+}
+
+.species-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.spec-item {
+  background: #f7f7f7;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #555555;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.spec-item:hover {
+  background: #ececec;
+  transform: translateX(5px);
+}
+
+.spec-item strong {
+  color: #111111;
+}
+
+@media (max-width: 768px) {
+  .vehicle-card {
+    flex-direction: column;
+  }
+
+  .vehicle-image img {
+    max-height: 250px;
+  }
+
+  .vehicle-details {
+    padding: 20px;
+  }
+
+  .vehicle-name {
+    font-size: 2em;
+  }
+
+  .vehicle-model {
+    font-size: 1.2em;
+  }
 }
 
 .back-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  margin-bottom: 10px;
   padding: 12px 22px;
-  border-radius: 999px;
   border: none;
-  color: #ffffff;
-  background: linear-gradient(135deg, #40b26b, #1f5f38);
+  border-radius: 999px;
+  background: #dddddd;
+  color: #111111;
   font-weight: 700;
-  font-size: 0.95rem;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .back-button:hover {
+  background: #bbbbbb;
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.16);
 }
 
-.species-missing {
-  max-width: 640px;
-  margin: 0 auto 24px;
-  text-align: center;
-  padding: 40px 30px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.species-missing h1 {
-  margin: 0 0 16px;
-  font-size: 2.2rem;
-  color: #d3f2c9;
-}
-
-.species-missing p {
-  margin: 0;
-  color: #cde5c9;
-  line-height: 1.7;
-}
-
-@media (max-width: 900px) {
-  .species-info {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .species-shell {
-    padding: 18px 14px;
-  }
-
-  .species-info {
-    padding: 22px 20px;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .back-button {
-    width: 100%;
-  }
+.back-button:focus {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
 }
