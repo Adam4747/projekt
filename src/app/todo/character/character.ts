@@ -45,17 +45,17 @@ export class CharacterComponent {
     this.routeId = id;
     console.log(this.loading, "1");
     const map: any = {
-      'darth-vader': 4,
-      'luke-skywalker': 1,
-      'c-3-po': 2,
-      'yoda': 20,
-      'han-solo': 14,
+      'darth-vader': 1,
+      'luke-skywalker': 2,
+      'c-3-po': 6,
+      'yoda': 3,
+      'han-solo': 4,
       'leia-organa': 5
     };
 
     this.apiId = map[id!];
     console.log(this.loading, "2");
-    this.http.get(`https://swapi.info/api/people/${this.apiId}`)
+    this.http.get(`http://localhost:8080/api/characters/${this.apiId}`)
       .subscribe(data => {
         this.character = data;
         console.log("test", data);
