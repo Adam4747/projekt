@@ -47,18 +47,18 @@ export class VehiclesComponent {
     this.routeId = id;
     console.log(this.loading, "1");
     const map: any = {
-      'at-at': 18,
-      'at-st': 19,
-      'juggernaut': 71,
-      'mtt': 34,
-      'sandcrawler': 4,
-      'speeder-bike': 30
+      'at-at': 1,
+      'at-st': 2,
+      'juggernaut': 3,
+      'mtt': 4,
+      'sandcrawler': 5,
+      'speeder-bike': 6
     };
     
 
     this.apiId = map[id!];
     console.log(this.loading, "2");
-    this.http.get(`https://swapi.info/api/vehicles/${this.apiId}`)
+    this.http.get(`http://localhost:8080/api/vehicles/${this.apiId}`)
       .subscribe(data => {
         this.vehicle = data;
         console.log("test", data);

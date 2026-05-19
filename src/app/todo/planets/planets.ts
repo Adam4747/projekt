@@ -45,17 +45,17 @@ export class PlanetsComponent {
     this.routeId = id;
     console.log(this.loading, "1");
     const map: any = {
-      'alderaan': 2,
-      'coruscant': 9,
-      'dagobah': 5,
+      'alderaan': 1,
+      'coruscant': 2,
+      'dagobah': 3,
       'hutt': 4,
-      'naboo': 8,
-      'tatooine': 1
+      'naboo': 5,
+      'tatooine': 6
     };
 
     this.apiId = map[id!];
     console.log(this.loading, "2");
-    this.http.get(`https://swapi.info/api/planets/${this.apiId}`)
+    this.http.get(`http://localhost:8080/api/planets/${this.apiId}`)
       .subscribe(data => {
         this.planet = data;
         console.log("test", data);
