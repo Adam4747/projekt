@@ -13,10 +13,10 @@
       <h1 class="spaceships-name">{{ spaceships.name }}</h1>
 
       <p><b>Model:</b> {{ spaceships.model }} </p>
-      <p><b>Twórca:</b> {{ spaceships.manufacturer }}</p>
-      <p><b>Cena:</b> {{ spaceships.cost_in_credits }} credits</p>
-      <p><b>Długość:</b> {{ spaceships.length }} m</p>
-      <p><b>Maksymalna prędkość:</b> {{ spaceships.max_atmospheric_speed }} km/h</p> <br>
+      <p><b>Twórca:</b> {{ spaceships.creator }}</p>
+      <p><b>Cena:</b> {{ spaceships.price }} credits</p>
+      <p><b>Długość:</b> {{ spaceships.length }} </p>
+      <p><b>Maksymalna prędkość:</b> {{ spaceships.maxSpeed }} km/h</p> <br>
 
       <p class="spaceships-descriptions">
         {{ descriptions[routeId || ''] }}

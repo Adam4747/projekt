@@ -45,17 +45,17 @@ export class SpaceshipsComponent {
     this.routeId = id;
     console.log(this.loading, "1");
     const map: any = {
-      'arc-170': 66,
-      'devastator': 3,
-      'death-star': 9,
-      'millennium-falcon': 10,
-      'tie-advanced': 13,
-      'x-wing': 12 
+      'arc-170': 1,
+      'devastator': 2,
+      'death-star': 3,
+      'millennium-falcon': 4,
+      'tie-advanced': 5,
+      'x-wing': 6 
     };
 
     this.apiId = map[id!];
     console.log(this.loading, "2");
-    this.http.get(`https://swapi.info/api/starships/${this.apiId}`)
+    this.http.get(`http://localhost:8080/api/spaceships/${this.apiId}`)
       .subscribe(data => {
         this.spaceships = data;
         console.log("test", data);
