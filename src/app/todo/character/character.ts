@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +17,7 @@ export class CharacterComponent {
   loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
+  stars: any[] = [];
 
   descriptions: Record<string, string> = {
     'darth-vader': 'Darth Vader, znany wcześniej jako Anakin Skywalker, to postać fikcyjna z sagi filmowej Gwiezdne wojny. Urodził się w 41 BBY na planecie Tatooine, gdzie był niewolnikiem dla handlarza Watto. Jego matka, Shmi Skywalker, nie powiedziała nic o ojcu Anakina, co sugeruje, że został poczęty przez Moc. Anakin był rycerzem Jedi, a następnie przeszedł na ciemną stronę Mocy pod wpływem Dartha Sidiousa, przyjąwszy tytuł „Darth Vader”. W swoim życiu, Darth Vader był prawa ręka Imperatora, a następnie powrócił na jasną stronę mocy, ratując swojego syna Lukea Skywalkera. Darth Vader jest jedną z najbardziej rozpoznawalnych postaci filmowych i symbolizuje ciemną stronę Mocy w Gwiezdnych Wojnach.',
@@ -40,7 +41,9 @@ export class CharacterComponent {
     private http: HttpClient,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
-  ) {
+  )
+  
+  {
     const id = this.route.snapshot.paramMap.get('id');
     this.routeId = id;
     console.log(this.loading, "1");
@@ -52,6 +55,7 @@ export class CharacterComponent {
       'han-solo': 4,
       'leia-organa': 5
     };
+    
 
     this.apiId = map[id!];
     console.log(this.loading, "2");
@@ -67,4 +71,11 @@ export class CharacterComponent {
 
       console.log(this.loading, "4");
   }
+  ngOnInit() {
+  this.stars = Array.from({ length: 120 }).map(() => ({
+    x: Math.random() * 100,
+    d: Math.random() * 3 + 2,
+    delay: Math.random() * 5
+  }));
+}
 }
