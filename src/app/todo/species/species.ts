@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -11,12 +11,13 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './species.html',
   styleUrl: './species.css',
 })
-export class SpeciesComponent {
+export class SpeciesComponent implements OnInit {
 
   species: any;
   loading = true; 
   apiId: number | null = null;
   routeId: string | null = null;
+  stars: any[] = [];
 
   descriptions: Record<string, string> = {
     'human':          'Najbardziej rozpowszechniony i elastyczny gatunek w galaktyce, stanowiący trzon struktur politycznych, od Republiki po Imperium. Ludzie słyną z ogromnej różnorodności kulturowej, ambicji oraz zdolności adaptacji do niemal każdych warunków. Choć nie posiadają wyjątkowych cech biologicznych, ich wszechstronność pozwoliła im zdominować galaktyczną historię, naukę i sztukę. Znajdziesz ich w każdej profesji, od szlachetnych rycerzy Jedi, przez bezwzględnych polityków, aż po przemytników.',
@@ -70,5 +71,11 @@ export class SpeciesComponent {
 
       console.log(this.loading, "4");
   }
-  
+   ngOnInit() {
+  this.stars = Array.from({ length: 120 }).map(() => ({
+    x: Math.random() * 100,
+    d: Math.random() * 3 + 2,
+    delay: Math.random() * 5
+  }));
+}
 }

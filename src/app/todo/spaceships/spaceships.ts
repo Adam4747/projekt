@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -11,12 +11,13 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './spaceships.html',
   styleUrl: './spaceships.css',
 })
-export class SpaceshipsComponent {
+export class SpaceshipsComponent implements OnInit {
 
   spaceships: any;
   loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
+  stars: any[] = [];
 
   descriptions: Record<string, string> = {
     'arc-170': 'ARC-170 to ciężki myśliwiec Republiki, używany głównie przez pilotów klonów podczas wojen klonów. Maszyna wyróżnia się trzema miejscami w kokpicie, składanymi skrzydłami typu S-foils oraz dużym zasięgiem. Uzbrojona w lasery i torpedy protonowe, była skuteczna w walce z myśliwcami Separatystów. Jej solidna konstrukcja zapewniała wytrzymałość, ale kosztem zwrotności w starciach kosmicznych. Często współpracowała z innymi jednostkami, pełniąc rolę wsparcia i patrolu w trudnych misjach bojowych różnorodnych.',
@@ -67,4 +68,11 @@ export class SpaceshipsComponent {
 
       console.log(this.loading, "4");
   }
+  ngOnInit() {
+  this.stars = Array.from({ length: 120 }).map(() => ({
+    x: Math.random() * 100,
+    d: Math.random() * 3 + 2,
+    delay: Math.random() * 5
+  }));
+}
 }

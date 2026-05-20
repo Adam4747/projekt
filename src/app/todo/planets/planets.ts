@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -11,13 +11,13 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './planets.html',
   styleUrl: './planets.css',
 })
-export class PlanetsComponent {
+export class PlanetsComponent implements OnInit {
 
   planet: any;
   loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
-
+  stars: any[] = [];
   descriptions: Record<string, string> = {
   'alderaan': 'Alderaan to prawdziwy klejnot Galaktyki, słynący z zapierających dech w piersiach alpejskich krajobrazów, głębokich oceanów oraz lśniących metropolii harmonijnie wkomponowanych w naturę. Jako oaza pokoju, kultury i zaawansowanej nauki, planeta ta była rządzona przez szlachetny ród Organa. Niestety, ze względu na silne wsparcie dla Sojuszu Rebeliantów, stała się pierwszą ofiarą niszczycielskiej potęgi Gwiazdy Śmierci. Jej tragiczna destrukcja na zawsze zmieniła losy galaktycznego konfliktu.',
   'coruscant': 'Coruscant to tętniące życiem serce Galaktyki, będące gigantycznym ekumenopolis, gdzie całą powierzchnię globu pokrywają monumentalne wieżowce i wielopoziomowe dzielnice. Przez tysiąclecia planeta pełniła funkcję stolicy Republiki oraz Imperium, goszcząc zarówno galaktyczny Senat, jak i majestatyczną Świątynię Jedi. Pod błyszczącą, luksusową powierzchnią najwyższych pięter kryją się jednak mroczne, niebezpieczne i zapomniane poziomy podziemia, w których kwitnie przestępczość oraz ubóstwo.',
@@ -67,4 +67,11 @@ export class PlanetsComponent {
 
       console.log(this.loading, "4");
   }
+  ngOnInit() {
+  this.stars = Array.from({ length: 120 }).map(() => ({
+    x: Math.random() * 100,
+    d: Math.random() * 3 + 2,
+    delay: Math.random() * 5
+  }));
+}
 }

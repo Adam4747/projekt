@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -11,12 +11,13 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './vehicles.html',
   styleUrl: './vehicles.css',
 })
-export class VehiclesComponent {
+export class VehiclesComponent implements OnInit {
 
   vehicle: any;
   loading = true;
   apiId: number | null = null;
   routeId: string | null = null;
+  stars: any[] = [];
 
   descriptions: Record<string, string> = {
   'at-at': 'AT-AT to ogromny, czteronożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w potężne działa laserowe i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
@@ -70,5 +71,11 @@ export class VehiclesComponent {
 
       console.log(this.loading, "4");
   }
-  
+  ngOnInit() {
+  this.stars = Array.from({ length: 120 }).map(() => ({
+    x: Math.random() * 100,
+    d: Math.random() * 3 + 2,
+    delay: Math.random() * 5
+  }));
+}
 }

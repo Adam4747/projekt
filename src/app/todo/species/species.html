@@ -1,3 +1,12 @@
+<div class="stars-layer">
+  <div class="star" *ngFor="let s of stars"
+       [ngStyle]="{
+         left: s.x + 'vw',
+         animationDuration: s.d + 's',
+         animationDelay: s.delay + 's'
+       }">
+  </div>
+</div>
 <div *ngIf="loading">
   Ładowanie gatunku...
 </div>
