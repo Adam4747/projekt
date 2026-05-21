@@ -184,3 +184,29 @@ body::before {
     opacity: 0;
   }
 }
+.falcon {
+  position: fixed;
+  top: 10%;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+  animation: flyFalcon 20s linear infinite;
+}
+
+@keyframes flyFalcon {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  30% {
+    transform: translate(0, 75vh) rotate(90deg);
+  }
+
+  60% {
+    transform: translate(95vw, 40vh) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(60vw, -20vh) rotate(-90deg);
+  }
+}

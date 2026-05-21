@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, OnDestroy, ViewChild, HostListener } fro
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 interface Star {
   x: number;
@@ -12,19 +14,22 @@ interface Star {
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule],
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
 export class Todo implements OnInit, OnDestroy {
-  // Przechwycenie elementu canvas z HTML
+
   @ViewChild('spaceCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
   private ctx!: CanvasRenderingContext2D;
   private stars: Star[] = [];
-  private numStars = 400; // Liczba gwiazd
-  private speed = 6;      // Prędkość (zwiększ dla trybu Hyperdrive)
+  private numStars = 400;
+  private speed = 6;
   private animationId!: number;
+
+  searchText: string = '';
+  searchResults: any[] = [];
 
   characters = [
     { id: 'darth-vader', name: 'Darth Vader' },
@@ -73,19 +78,17 @@ export class Todo implements OnInit, OnDestroy {
 
   openDropdown: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
-  // Odpalenie animacji po załadowaniu strony
   ngOnInit() {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
-    
+
     this.resizeCanvas();
     this.generateStars();
     this.animate();
   }
 
-  // Zatrzymanie animacji po wyjściu ze strony, żeby oszczędzać procesor
   ngOnDestroy() {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
@@ -116,7 +119,6 @@ export class Todo implements OnInit, OnDestroy {
     this.router.navigate(['/spaceships', id]);
   }
 
-  // Metody obsługujące kosmiczne tło
   @HostListener('window:resize')
   onResize() {
     this.resizeCanvas();
@@ -131,6 +133,7 @@ export class Todo implements OnInit, OnDestroy {
   private generateStars() {
     const canvas = this.canvasRef.nativeElement;
     this.stars = [];
+
     for (let i = 0; i < this.numStars; i++) {
       this.stars.push({
         x: Math.random() * canvas.width - canvas.width / 2,
@@ -142,8 +145,7 @@ export class Todo implements OnInit, OnDestroy {
 
   private animate = () => {
     const canvas = this.canvasRef.nativeElement;
-    
-    // Efekt smug za gwiazdami
+
     this.ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     this.ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -164,7 +166,7 @@ export class Todo implements OnInit, OnDestroy {
 
       if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
         const size = (1 - star.z / canvas.width) * 3;
-        
+
         this.ctx.fillStyle = '#ffffff';
         this.ctx.beginPath();
         this.ctx.arc(px, py, size, 0, Math.PI * 2);
@@ -173,5 +175,33 @@ export class Todo implements OnInit, OnDestroy {
     });
 
     this.animationId = requestAnimationFrame(this.animate);
+  };
+
+  // 🔍 SEARCH Z BACKENDU
+  search() {
+  if (!this.searchText) {
+    this.searchResults = [];
+    return;
+  }
+
+  this.http
+    .get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
+    .subscribe({
+      next: (data) => {
+        console.log("WYNIKI Z API:", data);
+        this.searchResults = data;
+      },
+      error: (err) => {
+        console.error("BŁĄD:", err);
+      }
+    });
+}
+
+  goToResult(item: any) {
+    if (item.type === 'character') this.goToCharacter(item.id);
+    if (item.type === 'planet') this.goToPlanet(item.id);
+    if (item.type === 'vehicle') this.goToVehicles(item.id);
+    if (item.type === 'species') this.goToSpecies(item.id);
+    if (item.type === 'starship') this.goToSpaceships(item.id);
   }
 }

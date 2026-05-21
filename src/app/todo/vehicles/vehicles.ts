@@ -30,11 +30,11 @@ export class VehiclesComponent implements OnInit {
 
   images: Record<string, string> = {
     'at-at': '/assets/img/vehicles/at-at.png',
-    'at-st': '/assets/img/vehicles/at-st.png',
+    'at-st': '/assets/img/vehicles/at-st-g.gif',
     'juggernaut': '/assets/img/vehicles/juggernaut.png',
     'mtt': '/assets/img/vehicles/mtt.png',
     'sandcrawler': '/assets/img/vehicles/sandcrawler.png',
-    'speeder-bike': '/assets/img/vehicles/speeder.png'
+    'speeder-bike': '/assets/img/vehicles/speeder-bike-g.gif'
   };
 
   constructor(

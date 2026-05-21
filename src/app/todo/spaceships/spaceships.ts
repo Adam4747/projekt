@@ -31,10 +31,10 @@ export class SpaceshipsComponent implements OnInit {
   images: Record<string, string> = {
       'arc-170': '/assets/img/spaceships/arc-170.png',
       'devastator': '/assets/img/spaceships/devastator.png',
-      'death-star': '/assets/img/spaceships/death-star.png',
+      'death-star': '/assets/img/spaceships/death-star-g.gif',
       'millennium-falcon': '/assets/img/spaceships/millennium-falcon.png',
-      'tie-advanced': '/assets/img/spaceships/tie-advanced-x1.png',
-      'x-wing': '/assets/img/spaceships/x-wing.png'
+      'tie-advanced': '/assets/img/spaceships/tie-advanced-g.gif',
+      'x-wing': '/assets/img/spaceships/x-wing-aa.gif'
   };
 
   constructor(

@@ -1,4 +1,5 @@
 <div class="stars-layer">
+  <img src="assets/img/spaceships/millenium-falcon-aa.png" class="falcon">
   <div class="star" *ngFor="let s of stars"
        [ngStyle]="{
          left: s.x + 'vw',
@@ -13,9 +14,11 @@
 <div *ngIf="!loading && character" class="character-container">
 
   <div class="character-card">
-
+<img *ngIf="character?.imageUrl"
+       [src]="'http://localhost:8080' + character.imageUrl">
     <div class="character-image">
-      <img [src]="images[routeId || ''] || ''" />
+      <img *ngIf="character?.gifUrl"
+     [src]="'http://localhost:8080' + character.gifUrl">
     </div>
 
     <div class="character-details">
@@ -28,7 +31,7 @@
       <p><b>Rok urodzenia:</b> {{ character?.birthYear }}</p> <br>
 
       <p class="character-descriptions">
-        {{ descriptions[routeId || ''] }}
+        {{ character?.description }}
       </p>
 
     </div>

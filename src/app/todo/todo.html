@@ -79,4 +79,19 @@
     </div>
   </div>
 </div>
+<div class="search-box">
+  <input 
+    type="text" 
+    placeholder="Szukaj w całej galaktyce..."
+    [(ngModel)]="searchText"
+    
+  />
 
+  <div class="search-results" *ngIf="searchResults.length > 0">
+    <div *ngFor="let r of searchResults">
+      <button (click)="goToResult(r)">
+        {{ r.name }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -30,11 +30,11 @@ export class SpeciesComponent implements OnInit {
 
   images: Record<string, string> = {
     'human': '/assets/img/species/human.png',
-    'ewok': '/assets/img/species/ewoki.png',
+    'ewok': '/assets/img/species/ewoki-g.gif',
     'gungan': '/assets/img/species/gungan.png',
-    'hutt': '/assets/img/species/hutt.png',
+    'hutt': '/assets/img/species/hutt-g.gif',
     'trandoshan': '/assets/img/species/trandoshan.png',
-    'wookiee': '/assets/img/species/wookie.png'
+    'wookiee': '/assets/img/species/wookiee-g.gif'
   };
 
   constructor(
