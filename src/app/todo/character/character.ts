@@ -11,53 +11,47 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './character.html',
   styleUrl: './character.css',
 })
-export class CharacterComponent {
+export class CharacterComponent implements OnInit {
 
-  character: any;
+  character: any = null;
   loading = true;
-  apiId: number | null = null;
-  routeId: string | null = null;
   stars: any[] = [];
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
-  )
-  
-  {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.routeId = id;
-    console.log(this.loading, "1");
-    const map: any = {
-      'darth-vader': 1,
-      'luke-skywalker': 2,
-      'c-3-po': 6,
-      'yoda': 3,
-      'han-solo': 4,
-      'leia-organa': 5
-    };
-    
+    private cd: ChangeDetectorRef
+  ) {}
 
-    this.apiId = map[id!];
-    console.log(this.loading, "2");
-    this.http.get(`http://localhost:8080/api/characters/${this.apiId}`)
-      .subscribe(data => {
-        this.character = data;
-        console.log("test", data);
-        console.log(this.loading, "3a");
-        this.loading = false;
-        this.cdr.detectChanges();
-        console.log(this.loading, "3b");
-      });
-
-      console.log(this.loading, "4");
-  }
   ngOnInit() {
-  this.stars = Array.from({ length: 120 }).map(() => ({
-    x: Math.random() * 100,
-    d: Math.random() * 3 + 2,
-    delay: Math.random() * 5
-  }));
-}
+
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+
+      console.log("NOWE ID:", id);
+
+      // 🔥 KLUCZOWE RESETOWANIE STANU
+      this.loading = true;
+      this.character = null;
+
+
+      this.http.get(`http://localhost:8080/api/characters/${id}`)
+        .subscribe({
+          next: (data) => {
+            this.character = data;
+            this.loading = false;
+            this.cd.detectChanges();
+          },
+          error: () => {
+            this.loading = false;
+          }
+        });
+    });
+
+    this.stars = Array.from({ length: 120 }).map(() => ({
+      x: Math.random() * 100,
+      d: Math.random() * 3 + 2,
+      delay: Math.random() * 5
+    }));
+  }
 }

@@ -16,7 +16,7 @@
   <div class="planet-card">
 
     <div class="planet-image">
-      <img [src]="images[routeId || ''] || ''" />
+      <img [src]="'http://localhost:8080' + planet.imageUrl">
     </div>
 
     <div class="planet-details">
@@ -29,7 +29,7 @@
       <p><b>Populacja:</b> {{ planet.population }}</p> <br>
 
       <p class="planet-descriptions">
-        {{ descriptions[routeId || ''] }}
+        {{ planet?.description }}
       </p>
 
     </div>

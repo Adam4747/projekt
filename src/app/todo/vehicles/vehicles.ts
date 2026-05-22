@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -13,69 +13,43 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class VehiclesComponent implements OnInit {
 
-  vehicle: any;
+  vehicle: any = null;
   loading = true;
-  apiId: number | null = null;
-  routeId: string | null = null;
   stars: any[] = [];
-
-  descriptions: Record<string, string> = {
-  'at-at': 'AT-AT to ogromny, czteronożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w potężne działa laserowe i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
-  'at-st': 'AT-ST to mniejszy, dwunożny pojazd kroczący używany przez Imperium Galaktyczne. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do patrolowania i wsparcia piechoty na polu bitwy.',
-  'juggernaut': 'Juggernaut to potężny pojazd kroczący używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w ciężkie działa i jest wykorzystywany głównie do transportu wojsk i wsparcia ogniowego na polu bitwy.',
-  'mtt': 'MTT to duży pojazd transportowy używany przez Separatystów podczas Wojen Klonów. Jest uzbrojony w działka laserowe i jest wykorzystywany głównie do transportu dużej liczby żołnierzy na pole bitwy.',
-  'sandcrawler': 'Sandcrawler to ogromny pojazd kroczący używany przez Jawów na pustynnej planecie Tatooine. Jest wykorzystywany głównie do transportu i handlu różnymi towarami, a także do zbierania złomu i części z wraków statków kosmicznych.',
-  'speeder-bike': '74-Z Speeder Bike to szybki, jednoosobowy pojazd używany przez Imperium Galaktyczne. Jest wykorzystywany głównie do patrolowania i szybkiego przemieszczania się po różnych terenach, zwłaszcza w lasach Endoru.'
-};
-
-  images: Record<string, string> = {
-    'at-at': '/assets/img/vehicles/at-at.png',
-    'at-st': '/assets/img/vehicles/at-st-g.gif',
-    'juggernaut': '/assets/img/vehicles/juggernaut.png',
-    'mtt': '/assets/img/vehicles/mtt.png',
-    'sandcrawler': '/assets/img/vehicles/sandcrawler.png',
-    'speeder-bike': '/assets/img/vehicles/speeder-bike-g.gif'
-  };
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
-  ) 
-  
-  {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.routeId = id;
-    console.log(this.loading, "1");
-    const map: any = {
-      'at-at': 1,
-      'at-st': 2,
-      'juggernaut': 3,
-      'mtt': 4,
-      'sandcrawler': 5,
-      'speeder-bike': 6
-    };
-    
+    private cd: ChangeDetectorRef
+  ) {}
 
-    this.apiId = map[id!];
-    console.log(this.loading, "2");
-    this.http.get(`http://localhost:8080/api/vehicles/${this.apiId}`)
-      .subscribe(data => {
-        this.vehicle = data;
-        console.log("test", data);
-        console.log(this.loading, "3a");
-        this.loading = false;
-        this.cdr.detectChanges();
-        console.log(this.loading, "3b");
-      });
-
-      console.log(this.loading, "4");
-  }
   ngOnInit() {
-  this.stars = Array.from({ length: 120 }).map(() => ({
-    x: Math.random() * 100,
-    d: Math.random() * 3 + 2,
-    delay: Math.random() * 5
-  }));
-}
+
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+
+      console.log("NOWE VEHICLE ID:", id);
+
+      this.loading = true;
+      this.vehicle = null;
+
+      this.http.get(`http://localhost:8080/api/vehicles/${id}`)
+        .subscribe({
+          next: (data) => {
+            this.vehicle = data;
+            this.loading = false;
+            this.cd.detectChanges();
+          },
+          error: () => {
+            this.loading = false;
+          }
+        });
+    });
+
+    this.stars = Array.from({ length: 120 }).map(() => ({
+      x: Math.random() * 100,
+      d: Math.random() * 3 + 2,
+      delay: Math.random() * 5
+    }));
+  }
 }

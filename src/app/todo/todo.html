@@ -14,7 +14,7 @@
   <div class="dropdown" *ngIf="openDropdown === 'characters'">
     <div *ngFor="let character of characters">
       <button (click)="goToCharacter(character.id)">
-        {{ character.name }}
+        {{ character.name }}  
       </button>
     </div>
   </div>
@@ -84,7 +84,7 @@
     type="text" 
     placeholder="Szukaj w całej galaktyce..."
     [(ngModel)]="searchText"
-    
+    (input)="search()"
   />
 
   <div class="search-results" *ngIf="searchResults.length > 0">

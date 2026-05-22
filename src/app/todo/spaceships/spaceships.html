@@ -13,9 +13,12 @@
 <div *ngIf="!loading && spaceships" class="spaceships-container">
 
   <div class="spaceships-card">
-
-    <div class="spaceships-image">
-      <img [src]="images[routeId || ''] || ''" />
+<div class="spaceships-image">
+      <img *ngIf="spaceships?.imageUrl" [src]="'http://localhost:8080' + spaceships.imageUrl">
+    
+    <div class="spaceships-gif">
+      <img *ngIf="spaceships?.gifUrl" [src]="'http://localhost:8080' + spaceships.gifUrl">
+    </div>
     </div>
 
     <div class="spaceships-details">
@@ -28,7 +31,7 @@
       <p><b>Maksymalna prędkość:</b> {{ spaceships.maxSpeed }} km/h</p> <br>
 
       <p class="spaceships-descriptions">
-        {{ descriptions[routeId || ''] }}
+        {{ spaceships?.description }}
       </p>
 
     </div>

@@ -14,12 +14,15 @@
 <div *ngIf="!loading && character" class="character-container">
 
   <div class="character-card">
-<img *ngIf="character?.imageUrl"
+<div class="character-image">
+
+  <img *ngIf="character?.imageUrl"
        [src]="'http://localhost:8080' + character.imageUrl">
-    <div class="character-image">
-      <img *ngIf="character?.gifUrl"
-     [src]="'http://localhost:8080' + character.gifUrl">
-    </div>
+
+  <img *ngIf="character?.gifUrl"
+       [src]="'http://localhost:8080' + character.gifUrl">
+
+</div>
 
     <div class="character-details">
       <h1 class="character-name">{{ character.name }}</h1>

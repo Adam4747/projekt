@@ -13,10 +13,14 @@
 <div *ngIf="!loading && vehicle" class="vehicle-container">
 
   <div class="vehicle-card">
-
     <div class="vehicle-image">
-      <img [src]="images[routeId || ''] || ''" />
+      <img *ngIf="vehicle?.imageUrl" [src]="'http://localhost:8080' + vehicle.imageUrl">
+    
+    <div class="vehicle-gif">
+      <img *ngIf="vehicle?.gifUrl" [src]="'http://localhost:8080' + vehicle.gifUrl">
     </div>
+    </div>
+    
 
     <div class="vehicle-details">
       <h1 class="vehicle-name">{{ vehicle.name }}</h1>
@@ -28,7 +32,7 @@
       <p><b>Pasażerowie:</b> {{ vehicle.passengers }}</p>
 
       <p class="vehicle-descriptions">
-        {{ descriptions[routeId || ''] }}
+        {{ vehicle?.description }}
       </p>
 
     </div>

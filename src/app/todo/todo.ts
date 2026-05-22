@@ -1,7 +1,14 @@
-import { Component, ElementRef, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  HostListener
+} from '@angular/core';
+
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -20,65 +27,33 @@ interface Star {
 })
 export class Todo implements OnInit, OnDestroy {
 
-  @ViewChild('spaceCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('spaceCanvas', { static: true })
+  canvasRef!: ElementRef<HTMLCanvasElement>;
 
+  // canvas
   private ctx!: CanvasRenderingContext2D;
   private stars: Star[] = [];
   private numStars = 400;
   private speed = 6;
   private animationId!: number;
 
+  // search
   searchText: string = '';
   searchResults: any[] = [];
 
-  characters = [
-    { id: 'darth-vader', name: 'Darth Vader' },
-    { id: 'c-3-po', name: 'C-3PO' },
-    { id: 'han-solo', name: 'Han Solo' },
-    { id: 'leia-organa', name: 'Leia Organa' },
-    { id: 'luke-skywalker', name: 'Luke Skywalker' },
-    { id: 'yoda', name: 'Yoda' }
-  ];
-
-  planets = [
-    { id: 'alderaan', name: 'Alderaan' },
-    { id: 'coruscant', name: 'Coruscant' },
-    { id: 'dagobah', name: 'Dagobah' },
-    { id: 'hoth', name: 'Hoth' },
-    { id: 'naboo', name: 'Naboo' },
-    { id: 'tatooine', name: 'Tatooine' }
-  ];
-
-  vehicles = [
-    { id: 'at-at', name: 'AT-AT' },
-    { id: 'at-st', name: 'AT-ST' },
-    { id: 'juggernaut', name: 'Juggernaut' },
-    { id: 'mtt', name: 'MTT' },
-    { id: 'sandcrawler', name: 'Sandcrawler' },
-    { id: 'speeder-bike', name: '74-Z Speeder Bike' }
-  ];
-
-  species = [
-    { id: 'human', name: 'Człowiek' },
-    { id: 'ewok', name: 'Ewoki' },
-    { id: 'gungan', name: 'Gungan' },
-    { id: 'hutt', name: 'Hutt' },
-    { id: 'trandoshan', name: 'Trandoshan' },
-    { id: 'wookiee', name: 'Wookiee' }
-  ];
-
-  starships = [
-    { id: 'arc-170', name: 'ARC-170' },
-    { id: 'devastator', name: 'Devastator' },
-    { id: 'death-star', name: 'Gwiazda śmierci' },
-    { id: 'millennium-falcon', name: 'Sokół Millennium' },
-    { id: 'tie-advanced', name: 'TIE Advanced x1' },
-    { id: 'x-wing', name: 'X-wing' }
-  ];
+  // data
+  characters: any[] = [];
+  planets: any[] = [];
+  vehicles: any[] = [];
+  species: any[] = [];
+  starships: any[] = [];
 
   openDropdown: string | null = null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     const canvas = this.canvasRef.nativeElement;
@@ -87,6 +62,21 @@ export class Todo implements OnInit, OnDestroy {
     this.resizeCanvas();
     this.generateStars();
     this.animate();
+
+    this.http.get<any[]>("http://localhost:8080/api/characters")
+      .subscribe(data => this.characters = data);
+
+    this.http.get<any[]>("http://localhost:8080/api/planets")
+      .subscribe(data => this.planets = data);
+
+    this.http.get<any[]>("http://localhost:8080/api/vehicles")
+      .subscribe(data => this.vehicles = data);
+
+    this.http.get<any[]>("http://localhost:8080/api/species")
+      .subscribe(data => this.species = data);
+
+    this.http.get<any[]>("http://localhost:8080/api/spaceships")
+      .subscribe(data => this.starships = data);
   }
 
   ngOnDestroy() {
@@ -95,11 +85,39 @@ export class Todo implements OnInit, OnDestroy {
     }
   }
 
-  toggleDropdown(name: string) {
-    this.openDropdown = this.openDropdown === name ? null : name;
+  // ======================
+  // SEARCH (ONLY BACKEND)
+  // ======================
+  search() {
+    if (!this.searchText) {
+      this.searchResults = [];
+      return;
+    }
+
+    this.http
+      .get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
+      .subscribe({
+        next: (data) => {
+          this.searchResults = data;
+        },
+        error: (err) => {
+          console.error("SEARCH ERROR:", err);
+        }
+      });
   }
 
-  goToCharacter(id: string) {
+  goToResult(item: any) {
+    if (item.type === 'character') this.goToCharacter(item.id);
+    if (item.type === 'planet') this.goToPlanet(item.id);
+    if (item.type === 'vehicle') this.goToVehicles(item.id);
+    if (item.type === 'species') this.goToSpecies(item.id);
+    if (item.type === 'starship') this.goToSpaceships(item.id);
+  }
+
+  // ======================
+  // NAVIGATION
+  // ======================
+  goToCharacter(id: number) {
     this.router.navigate(['/character', id]);
   }
 
@@ -119,6 +137,16 @@ export class Todo implements OnInit, OnDestroy {
     this.router.navigate(['/spaceships', id]);
   }
 
+  // ======================
+  // DROPDOWNS
+  // ======================
+  toggleDropdown(name: string) {
+    this.openDropdown = this.openDropdown === name ? null : name;
+  }
+
+  // ======================
+  // RESIZE
+  // ======================
   @HostListener('window:resize')
   onResize() {
     this.resizeCanvas();
@@ -130,6 +158,9 @@ export class Todo implements OnInit, OnDestroy {
     canvas.height = window.innerHeight;
   }
 
+  // ======================
+  // STARFIELD
+  // ======================
   private generateStars() {
     const canvas = this.canvasRef.nativeElement;
     this.stars = [];
@@ -153,6 +184,7 @@ export class Todo implements OnInit, OnDestroy {
     const cy = canvas.height / 2;
 
     this.stars.forEach(star => {
+
       star.z -= this.speed;
 
       if (star.z <= 0) {
@@ -165,7 +197,7 @@ export class Todo implements OnInit, OnDestroy {
       const py = (star.y / star.z) * canvas.height + cy;
 
       if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
-        const size = (1 - star.z / canvas.width) * 3;
+        const size = Math.max(0.1, (1 - star.z / canvas.width) * 3);
 
         this.ctx.fillStyle = '#ffffff';
         this.ctx.beginPath();
@@ -176,32 +208,4 @@ export class Todo implements OnInit, OnDestroy {
 
     this.animationId = requestAnimationFrame(this.animate);
   };
-
-  // 🔍 SEARCH Z BACKENDU
-  search() {
-  if (!this.searchText) {
-    this.searchResults = [];
-    return;
-  }
-
-  this.http
-    .get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
-    .subscribe({
-      next: (data) => {
-        console.log("WYNIKI Z API:", data);
-        this.searchResults = data;
-      },
-      error: (err) => {
-        console.error("BŁĄD:", err);
-      }
-    });
-}
-
-  goToResult(item: any) {
-    if (item.type === 'character') this.goToCharacter(item.id);
-    if (item.type === 'planet') this.goToPlanet(item.id);
-    if (item.type === 'vehicle') this.goToVehicles(item.id);
-    if (item.type === 'species') this.goToSpecies(item.id);
-    if (item.type === 'starship') this.goToSpaceships(item.id);
-  }
 }
