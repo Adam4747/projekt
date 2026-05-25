@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
@@ -20,6 +20,7 @@ export class SpeciesComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
+    private router: Router,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -51,5 +52,8 @@ export class SpeciesComponent implements OnInit {
       d: Math.random() * 3 + 2,
       delay: Math.random() * 5
     }));
+  }
+  goToMenu() {
+    this.router.navigate(['/']);
   }
 }

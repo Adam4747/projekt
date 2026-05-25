@@ -13,6 +13,11 @@
 </div>
 <div *ngIf="!loading && planet" class="planet-container">
 
+  
+  <button (click)="goToMenu()" class="back-button">
+  <span class="arrow">←</span> Menu
+</button>
+
   <div class="planet-card">
 
     <div class="planet-image">

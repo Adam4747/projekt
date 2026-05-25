@@ -210,3 +210,49 @@ body::before {
     transform: translate(60vw, -20vh) rotate(-90deg);
   }
 }
+
+.back-button {
+  position: fixed;
+  top: 24px;     
+  left: 24px;      
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  font-size: 0.95rem;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;    
+}
+
+.back-button .arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.45);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.back-button:hover .arrow {
+  transform: translateX(-4px); 
+}
+
+@media (max-width: 640px) {
+  .back-button {
+    top: 12px;
+    left: 12px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}

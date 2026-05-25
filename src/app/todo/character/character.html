@@ -13,6 +13,10 @@
 </div>
 <div *ngIf="!loading && character" class="character-container">
 
+  <button (click)="goToMenu()" class="back-button">
+  <span class="arrow">←</span> Menu
+</button>
+
   <div class="character-card">
 <div class="character-image">
 

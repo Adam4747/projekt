@@ -1,4 +1,5 @@
 <div class="stars-layer">
+  <img src="assets/img/spaceships/millenium-falcon-aa.png" class="falcon">
   <div class="star" *ngFor="let s of stars"
        [ngStyle]="{
          left: s.x + 'vw',
@@ -11,6 +12,11 @@
   Ładowanie pojazdu...
 </div>
 <div *ngIf="!loading && vehicle" class="vehicle-container">
+
+  <button (click)="goToMenu()" class="back-button">
+  <span class="arrow">←</span> Menu
+</button>
+
 
   <div class="vehicle-card">
     <div class="vehicle-image">

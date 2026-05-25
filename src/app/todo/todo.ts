@@ -1,16 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  HostListener
-} from '@angular/core';
-
+import {Component, ElementRef, OnInit, OnDestroy, ViewChild, HostListener} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient,  } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 interface Star {
   x: number;
@@ -21,7 +15,7 @@ interface Star {
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, FormsModule,],
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
@@ -36,7 +30,7 @@ export class Todo implements OnInit, OnDestroy {
   private numStars = 400;
   private speed = 6;
   private animationId!: number;
-
+  private searchSubject = new Subject<string>();
   // search
   searchText: string = '';
   searchResults: any[] = [];
@@ -77,7 +71,17 @@ export class Todo implements OnInit, OnDestroy {
 
     this.http.get<any[]>("http://localhost:8080/api/spaceships")
       .subscribe(data => this.starships = data);
+
+       this.searchSubject.pipe(
+      debounceTime(300),
+      switchMap(text =>
+        this.http.get<any[]>(`http://localhost:8080/api/search?query=${text}`)
+      )
+    ).subscribe(data => {
+      this.searchResults = data;
+    });
   }
+  
 
   ngOnDestroy() {
     if (this.animationId) {
@@ -94,8 +98,10 @@ export class Todo implements OnInit, OnDestroy {
       return;
     }
 
-    this.http
-      .get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
+    this.searchSubject.next(this.searchText);
+  
+
+    this.http.get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
       .subscribe({
         next: (data) => {
           this.searchResults = data;
