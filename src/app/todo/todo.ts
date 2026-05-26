@@ -99,17 +99,6 @@ export class Todo implements OnInit, OnDestroy {
     }
 
     this.searchSubject.next(this.searchText);
-  
-
-    this.http.get<any[]>(`http://localhost:8080/api/search?query=${this.searchText}`)
-      .subscribe({
-        next: (data) => {
-          this.searchResults = data;
-        },
-        error: (err) => {
-          console.error("SEARCH ERROR:", err);
-        }
-      });
   }
 
   goToResult(item: any) {
@@ -143,16 +132,21 @@ export class Todo implements OnInit, OnDestroy {
     this.router.navigate(['/spaceships', id]);
   }
 
-  // ======================
+
   // DROPDOWNS
-  // ======================
   toggleDropdown(name: string) {
     this.openDropdown = this.openDropdown === name ? null : name;
   }
+  @HostListener('document:click', ['$event'])
+onDocumentClick(event: MouseEvent) {
+  const target = event.target as HTMLElement;
 
-  // ======================
+  if (!target.closest('.option')) {
+    this.openDropdown = null;
+  }
+}
+
   // RESIZE
-  // ======================
   @HostListener('window:resize')
   onResize() {
     this.resizeCanvas();
@@ -214,4 +208,37 @@ export class Todo implements OnInit, OnDestroy {
 
     this.animationId = requestAnimationFrame(this.animate);
   };
+  crawlText: string = `
+Dawno dawno temu, w odległej, cyfrowej galaktyce… 
+
+Aż na samym dnie kodu, tam gdzie grawitacja logiczna zakrzywia czas, narodziła się nowa nadzieja. Grupa śmiałych praktykantów postanowiła rzucić wyzwanie nieznanemu i opanować potężne arkana TypeScriptu oraz potęgę frameworka Angular.
+
+Rozdział I: Pierwsze Kroki i Trening Jedi
+Na początku była tylko pustka i migający kursor w terminalu. Praktykanci, niczym młodzi Padawani, musieli najpierw zrozumieć, czym jest Moc Typowania. TypeScript z początku wydawał się surowym mistrzem – nie wybaczał błędów, krzyczał czerwonymi liniami przy każdej złej próbie przypisania zmiennej i żądał absolutnej dyscypliny. Jednak z każdym dniem intensywnego kursu, z każdym przejechanym modułem i zrozumianym komponentem (@Component), młodzi programiści zaczynali dostrzegać ukrytą harmonię. Angular przestał być chaosem, a stał się potężnym sojusznikiem. Nauczyli się tworzyć serwisy, okiełznali routing i zrozumieli, jak przesyłać dane między komponentami za pomocą @Input i @Output.
+
+Rozdział II: Wizja Wielkiego Projektu
+Gdy kurs dobiegł końca, nadszedł czas próby. Praktykanci nie chcieli budować kolejnej nudnej listy zadań (To-Do List). Postanowili stworzyć coś, co odzwierciedlało ich galaktyczne ambicje – własną, epicką stronę o Star Wars.
+
+Praca ruszyła pełną parą:
+
+Gwiazdy w tle: Pierwszym krokiem było stworzenie klimatu. Za pomocą CSS-owej magii i sprytnych skryptów, tło ich aplikacji ożyło. Ciemna przestrzeń kosmiczna zapełniła się setkami mieniących się, hipnotyzujących gwiazd, które przesuwały się po ekranie, dając niesamowity efekt głębi.
+
+Galeria Postaci i Opisy: Na stronę trafiły legendarne postacie – od Luke'a Skywalkera, przez Dartha Vadera, aż po urocze ewoki. Każdy bohater, pojazd, planeta, gatunek i statek koszmiczny otrzymał swoje dedykowane miejsce, piękne zdjęcie oraz wyczerpujący opis.
+
+Interaktywne Przyciski: Strona nie mogła być martwa. Praktykanci zaprogramowali przyciski, które reagowały na kliknięcia użytkownika z prędkością światła.
+
+Kosmiczna Muzyka: Czym byłyby Gwiezdne Wojny bez muzyki? Po wejściu na stronę, z głośników zaczęły wydobywać się potężne, orkiestrowe brzmienia, które natychmiast budowały klimat kosmicznej przygody.
+
+Rozdział III: Ciemna Strona Mocy, czyli Backend
+Prawdziwy Jedi wie jednak, że to, co widoczne dla oka (Frontend), to tylko połowa sukcesu. Prawdziwa siła tkwiła w głębi. Praktykanci wznieśli więc potężny Backend.
+
+To tam, na bezpiecznych serwerach, ukryli całe archiwum swojej rebelii. Wszystkie zdjęcia, opisy planet, statków kosmicznych i parametry bohaterów zostały uporządkowane i zabezpieczone. Za pomocą Angularowego HttpClient i magii ReactiveX (RxJS), frontend wysyłał zapytania w nadprzestrzeń, a backend błyskawicznie odpowiadał, karmiąc stronę potrzebnymi danymi. Nic nie działo się z przypadku – wszystko działało jak idealnie naoliwiony mechanizm gwiezdnego niszczyciela.
+
+Epilog: Sukces w Cyfrowej Galaktyce
+I tak, po dniach (i nocach) kodowania, kompilowania i debugowania, misja zakończyła się pełnym sukcesem. Strona została ukończona.
+
+Gdy po raz pierwszy odpalili wersję produkcyjną, a na ekranie, na tle migoczących gwiazd, pojawiła się potężna dawka wiedzy o Star Wars okraszona muzyką, praktykanci wiedzieli, że zdali egzamin. Nie byli już tylko zagubionymi adeptami. Stali się prawdziwymi Rycerzami Angulara, gotowymi na kolejne wyzwania w niezmierzonym uniwersum web developmentu.
+
+Moc TypeScriptu pozostała z nimi na zawsze.
+`;
 }

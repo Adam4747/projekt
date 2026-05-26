@@ -6,149 +6,174 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+  background: radial-gradient(circle at center, #05060a, #000000 80%);
   color: #fff;
-  margin: 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
+  padding: 80px 20px; /* 🔥 ODSTĘP OD GÓRY */
+  display: block; /* ❗ usuwa centrowanie na siłę */
 }
 
+/* ===== GWIAZDY TŁO ===== */
 body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 90px 90px;
-  opacity: 0.12;
-  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 70px 70px;
+  opacity: 0.08;
 }
 
+/* ===== KONTAINER ===== */
 .vehicle-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
-  position: relative;
   z-index: 1;
+   margin-top: 40px;
 }
 
+/* ===== KARTA ===== */
 .vehicle-card {
-  width: min(100%, 980px);
+  width: min(100%, 1000px);
   display: flex;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(14px);
+  background: rgba(10, 10, 20, 0.85);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px);
   overflow: hidden;
-  animation: fadeIn 1s ease-in-out;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: all 0.4s ease;
+  max-height: 80vh;
 }
 
 .vehicle-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(59, 130, 246, 0.45);
-  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.45);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 40px 120px rgba(59, 130, 246, 0.25);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* ===== OBRAZ ===== */
 .vehicle-image {
   flex: 0 0 40%;
-  min-height: 460px;
-  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 35%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  max-height: 480px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.25), transparent);
   position: relative;
-}
-
-.vehicle-image::before {
-  content: '';
-  position: absolute;
-  inset: 24px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  pointer-events: none;
 }
 
 .vehicle-image img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90%;
+  max-height: 90%;
   border-radius: 16px;
   object-fit: contain;
-  position: relative;
-  z-index: 1;
+  transition: transform 0.4s ease;
 }
 
-.image-placeholder {
-  width: 100%;
-  text-align: center;
-  color: #cbd5e1;
-  font-size: 1rem;
-  line-height: 1.7;
-  position: relative;
-  z-index: 1;
+.vehicle-image img:hover {
+  transform: scale(1.05) rotate(1deg);
 }
 
+/* ===== DETALE ===== */
 .vehicle-details {
   flex: 1;
-  padding: 48px 40px;
+  padding: 30px 30px;
 }
 
+/* ===== NAZWA ===== */
 .vehicle-name {
-  margin: 0;
   font-size: 3rem;
-  letter-spacing: -0.05em;
-  color: #fbfbff;
-  text-shadow: 1px 1px 6px rgba(59, 130, 246, 0.45);
-  animation: glow 2.5s ease-in-out infinite alternate;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  color: #ffffff;
+
+  /* efekt neon */
+  text-shadow:
+    0 0 5px #3b82f6,
+    0 0 15px #3b82f6,
+    0 0 30px rgba(59,130,246,0.6);
+
+  animation: pulseGlow 3s infinite alternate;
 }
 
-@keyframes glow {
-  from { text-shadow: 1px 1px 6px rgba(59, 130, 246, 0.35); }
-  to { text-shadow: 1px 1px 16px rgba(59, 130, 246, 0.7); }
+@keyframes pulseGlow {
+  from {
+    text-shadow:
+      0 0 5px #3b82f6,
+      0 0 15px #3b82f6;
+  }
+  to {
+    text-shadow:
+      0 0 10px #60a5fa,
+      0 0 25px #60a5fa,
+      0 0 50px rgba(96,165,250,0.6);
+  }
 }
 
-.vehicle-description {
-  margin: 24px 0 0;
-  color: #dbeafe;
-  font-size: 1.08rem;
-  line-height: 1.85;
-  max-width: 720px;
+/* ===== STATYSTYKI ===== */
+.vehicle-details p {
+  margin: 6px 0;
+  font-size: 1.05rem;
+  color: #d1d5db;
 }
 
+/* ===== OPIS ===== */
+.vehicle-descriptions {
+  margin-top: 20px;
+  line-height: 1.8;
+  color: #e5e7eb;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .vehicle-card {
     flex-direction: column;
   }
 
   .vehicle-image {
-    min-height: 320px;
-    padding: 28px;
+    min-height: 300px;
   }
 }
 
-@media (max-width: 640px) {
-  .vehicle-details {
-    padding: 28px 22px;
-  }
-
-  .vehicle-name {
-    font-size: 2.2rem;
-  }
+/* ===== FALCON ===== */
+.falcon {
+  position: fixed;
+  top: 10%;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+  animation: flyFalcon 20s linear infinite;
 }
 
+@keyframes flyFalcon {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(0, 75vh) rotate(90deg); }
+  60% { transform: translate(95vw, 40vh) rotate(0deg); }
+  100% { transform: translate(60vw, -20vh) rotate(-90deg); }
+}
+
+/* ===== BACK BUTTON ===== */
+.back-button {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #cbd5e1;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: #3b82f6;
+  background: rgba(59,130,246,0.2);
+  box-shadow: 0 0 15px rgba(59,130,246,0.5);
+}
+/* ===== ANIMOWANE GWIAZDY (POPRAWIONE) ===== */
 .stars-layer {
   position: fixed;
   inset: 0;
@@ -165,13 +190,20 @@ body::before {
   border-radius: 50%;
   opacity: 0;
   box-shadow: 0 0 6px white;
-   animation: starFall linear infinite;
-  animation-fill-mode: both;
+  animation: starFall linear infinite;
+}
+
+/* różne prędkości = lepszy efekt */
+.stars-layer .star:nth-child(odd) {
+  animation-duration: 6s;
+}
+.stars-layer .star:nth-child(even) {
+  animation-duration: 10s;
 }
 
 @keyframes starFall {
   0% {
-    transform: translateY(-10vh);
+    transform: translateY(-10vh) scale(0.5);
     opacity: 0;
   }
 
@@ -180,79 +212,7 @@ body::before {
   }
 
   100% {
-    transform: translateY(110vh);
+    transform: translateY(110vh) scale(1);
     opacity: 0;
-  }
-}
-.falcon {
-  position: fixed;
-  top: 10%;
-  width: 80px;
-  z-index: 2;
-  pointer-events: none;
-  animation: flyFalcon 20s linear infinite;
-}
-
-@keyframes flyFalcon {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-
-  30% {
-    transform: translate(0, 75vh) rotate(90deg);
-  }
-
-  60% {
-    transform: translate(95vw, 40vh) rotate(0deg);
-  }
-
-  100% {
-    transform: translate(60vw, -20vh) rotate(-90deg);
-  }
-}
-.back-button {
-  position: fixed; 
-  top: 24px;      
-  left: 24px;     
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 12px 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-weight: bold;
-  font-size: 0.95rem;
-  backdrop-filter: blur(8px);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 100;    
-}
-
-.back-button .arrow {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.15);
-  border-color: rgba(59, 130, 246, 0.45);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-}
-
-.back-button:hover .arrow {
-  transform: translateX(-4px); 
-}
-
-
-@media (max-width: 640px) {
-  .back-button {
-    top: 12px;
-    left: 12px;
-    padding: 8px 14px;
-    font-size: 0.85rem;
   }
 }
