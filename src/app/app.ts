@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, HostListener, } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -14,6 +14,8 @@ export class App implements OnInit {
 
   ngOnInit() {
   document.addEventListener('click', this.startMusicOnce);
+    this.glow = document.querySelector('.cursor-glow') as HTMLElement;
+
 }
 
 startMusicOnce = () => {
@@ -35,4 +37,15 @@ startMusicOnce = () => {
       audio.play();
     }
   }
+  @HostListener('document:mousemove', ['$event'])
+onMouseMove(event: MouseEvent) {
+  if (this.glow) {
+ const offsetX = 16;
+const offsetY = 16;
+
+this.glow.style.left = event.clientX + 'px';
+this.glow.style.top = event.clientY + 'px';
+  }
+}
+private glow!: HTMLElement;
 }

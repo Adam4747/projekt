@@ -24,7 +24,7 @@ export class Todo implements OnInit, OnDestroy {
   @ViewChild('spaceCanvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  // canvas
+
   private ctx!: CanvasRenderingContext2D;
   private stars: Star[] = [];
   private numStars = 400;
@@ -184,6 +184,7 @@ onDocumentClick(event: MouseEvent) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+  
 
   // ======================
   // STARFIELD

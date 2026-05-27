@@ -6,8 +6,27 @@ html, body {
   height: auto;
   overflow-x: hidden;
   overflow-y: auto;
+ 
 }
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+  cursor: url('/assets/cursor/miecz.png') 16 16, auto !important;
+}
+button, a {
+  cursor: url('/assets/cursor/miecz.png') 16 16, pointer !important;
+}
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  background: radial-gradient(circle, rgb(16, 216, 16) 50%, transparent 70%);
+  filter: blur(6px);
+
+  transform: translate(-50%, -50%);
 }
