@@ -8,9 +8,12 @@ body {
   font-family: 'Arial', sans-serif;
   background: radial-gradient(circle at center, #05060a, #000000 80%);
   color: #fff;
-  min-height: 100vh;
-  padding: 80px 20px; /* 🔥 ODSTĘP OD GÓRY */
-  display: block; /* ❗ usuwa centrowanie na siłę */
+  height: auto;
+  min-height: 100%;
+  padding: 80px 20px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* ===== GWIAZDY TŁO ===== */
@@ -29,7 +32,7 @@ body::before {
   display: flex;
   justify-content: center;
   z-index: 1;
-   margin-top: 40px;
+   margin-top: 70px;
 }
 
 /* ===== KARTA ===== */
@@ -43,7 +46,7 @@ body::before {
   backdrop-filter: blur(18px);
   overflow: hidden;
   transition: all 0.4s ease;
-  max-height: 80vh;
+  max-height: 100%;
 }
 
 .character-card:hover {

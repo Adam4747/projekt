@@ -31,6 +31,7 @@ export class Todo implements OnInit, OnDestroy {
   private speed = 6;
   private animationId!: number;
   private searchSubject = new Subject<string>();
+  private sounds: HTMLAudioElement[] = [];
   // search
   searchText: string = '';
   searchResults: any[] = [];
@@ -88,6 +89,32 @@ export class Todo implements OnInit, OnDestroy {
       cancelAnimationFrame(this.animationId);
     }
   }
+
+   playBlaster() {
+  const audio = new Audio('assets/music/blaster.mp3');
+  audio.volume = 0.7;
+
+  this.sounds.push(audio); // 🔥 trzymamy referencję
+
+  audio.play();
+
+  audio.onended = () => {
+    this.sounds = this.sounds.filter(a => a !== audio);
+  };
+}
+
+playLightsaber() {
+  const audio = new Audio('assets/music/lightsaber.mp3');
+  audio.volume = 0.7;
+
+  this.sounds.push(audio);
+
+  audio.play();
+
+  audio.onended = () => {
+    this.sounds = this.sounds.filter(a => a !== audio);
+  };
+}
 
   // ======================
   // SEARCH (ONLY BACKEND)

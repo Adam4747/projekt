@@ -179,14 +179,14 @@ html, body {
   
   /* Wydłużamy animację do 55 sekund, bo większy tekst potrzebuje 
      odrobinę więcej czasu, żeby płynnie przejść przez ekran */
-  animation: crawlAnimation 200s linear forwards; 
+  animation: crawlAnimation 250s linear forwards; 
 }
 
 .crawl-text {
   color: #ffd700;
   
   /* POTĘŻNY ROZMIAR CZCIONKI: Z 36px wskakujemy na 56px! */
-  font-size: 30px; 
+  font-size: 40px; 
   font-weight: 900; /* Maksymalne pogrubienie czcionki */
 
   text-align: justify;
@@ -207,7 +207,7 @@ html, body {
 @keyframes crawlAnimation {
   0% {
     top: 100%;
-    transform: rotateX(50deg) translateY(-1500px);
+    transform: rotateX(50deg) translateY(-500px);
   }
   100% {
     /* Tekst jest teraz fizycznie wyższy, więc musi polecieć wyżej (-220%), 
@@ -215,4 +215,22 @@ html, body {
     top: -700%;
     transform: rotateX(50deg) translateY(-100%);
   }
+}
+.music-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: gold;
+  cursor: pointer;
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px gold;
 }

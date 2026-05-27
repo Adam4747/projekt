@@ -1,6 +1,7 @@
 <canvas #spaceCanvas class="space-bg"></canvas>
+
 <div class="todo-shell">
-  <div class="starfield"></div>
+
 
   <h1 class="title">STAR WARS</h1>
 
@@ -13,7 +14,7 @@
 
   <div class="dropdown" *ngIf="openDropdown === 'characters'">
     <div *ngFor="let character of characters">
-      <button (click)="goToCharacter(character.id)">
+      <button (click)="goToCharacter(character.id); playLightsaber()">
         {{ character.name }}  
       </button>
     </div>
@@ -28,7 +29,7 @@
 
   <div class="dropdown" *ngIf="openDropdown === 'planets'">
     <div *ngFor="let planet of planets">
-      <button (click)="goToPlanet(planet.id)">
+      <button (click)="goToPlanet(planet.id); playBlaster()">
         {{ planet.name }}
       </button>
     </div>
@@ -43,7 +44,7 @@
 
   <div class="dropdown" *ngIf="openDropdown === 'vehicles'">
     <div *ngFor="let vehicle of vehicles">
-      <button (click)="goToVehicles(vehicle.id)">
+      <button (click)="goToVehicles(vehicle.id); playBlaster()">
         {{ vehicle.name }}
       </button>
     </div>
@@ -58,7 +59,7 @@
 
   <div class="dropdown" *ngIf="openDropdown === 'species'">
     <div *ngFor="let s of species">
-      <button (click)="goToSpecies(s.id)">
+      <button (click)="goToSpecies(s.id); playBlaster()">
         {{ s.name }}
       </button>
     </div>
@@ -73,7 +74,7 @@
 
   <div class="dropdown" *ngIf="openDropdown === 'starships'">
     <div *ngFor="let ship of starships">
-      <button (click)="goToSpaceships(ship.id)">
+      <button (click)="goToSpaceships(ship.id); playBlaster()">
         {{ ship.name }}
       </button>
     </div>
@@ -89,16 +90,16 @@
 
   <div class="search-results" *ngIf="searchResults.length > 0">
     <div *ngFor="let r of searchResults">
-      <button (click)="goToResult(r)">
+      <button (click)="goToResult(r); playLightsaber()">
         {{ r.name }}
       </button>
     </div>
   </div>
+  </div>
   <div class="crawl-container">
   <div class="crawl">
-    <div class="crawl-text" style="font-size: 40px; font-weight: 900; font-family: 'Franklin Gothic Medium', 'Arial Black', sans-serif;">
+    <div class="crawl-text" style="font-size: 20px; font-weight: 900; font-family: 'Franklin Gothic Medium', 'Arial Black', sans-serif;">
       {{ crawlText }}
     </div>
   </div>
-</div>
 </div>

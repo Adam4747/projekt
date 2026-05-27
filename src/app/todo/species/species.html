@@ -22,10 +22,10 @@
 <div class="species-image">
       <img *ngIf="species?.imageUrl" [src]="'http://localhost:8080' + species.imageUrl">
     
-    <div class="vehicle-gif">
+    
       <img *ngIf="species?.gifUrl" [src]="'http://localhost:8080' + species.gifUrl">
     </div>
-    </div>
+    
 
     <div class="species-details">
       <h1 class="species-name">{{ species.name }}</h1>
